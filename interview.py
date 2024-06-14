@@ -3,7 +3,6 @@ import sys
 import streamlit as st
 import requests
 from typing import Dict
-from StreamlitTools import StreamlitInput, StreamlitHandler
 import time
 
 st.html("""
@@ -38,7 +37,7 @@ session_id = _get_session()
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
-    st.text = session_id
+    text = st.markdown('Generator SessionID:\n' + session_id)
 
 st.title("File Upload and Download with Chat")
 
