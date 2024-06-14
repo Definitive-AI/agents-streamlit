@@ -39,7 +39,8 @@ with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
     text = st.markdown('Generator SessionID:\n' + session_id)
 
-st.title("File Upload and Download with Chat")
+st.title("Agent Generator - Process Documentation")
+st.subheader('Chat with Eva to generate Agents')
 
 url = ""
 

@@ -25,6 +25,9 @@ with st.sidebar:
 
 st.title("Agent Generator from Process Documentation")
 
+st.title("Agent Generator - Storage")
+st.subheader('Enter saved SessionId to access created Agents')
+
 url = "http://localhost:5000"
 
 session_id = st.text_input("Enter Session ID")
