@@ -35,7 +35,7 @@ st.markdown("---")
 with st.expander("Sign up here"):
     st.markdown("""
     
-    <a href="https://definitive-ai.com/"><img src="https://user-images.githubusercontent.com/875246/185755203-17945fd1-6b64-46f2-8377-1011dcb1a444.png" height="50" /></a>
+    <a href="https://definitive-ai.com/"><img src="https://github.com/Definitive-AI-Testing/agents-streamlit/blob/master/.streamlit/sign-up.jpg" height="50" /></a>
 
 """, unsafe_allow_html=True)
 
