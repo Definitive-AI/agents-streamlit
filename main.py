@@ -42,21 +42,17 @@ with st.expander("Sign up here"):
 st.markdown("""
 ### 📓 Guide
 
-To get the most out of this course, you should feel comfortable with coding and command line
-and know the basics of SQL. Prior experience with Python will be helpful, but you can pick
-Python relatively fast if you have experience with other programming languages.
 
-Prior experience with data engineering is not required.
 
 
 ### ❔ Asking for help in Discord
 
-The best way to get support is to use [DataTalks.Club's Slack](https://datatalks.club/slack.html). Join the [`#course-data-engineering`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel.
+The best way to get support is to use [Definitive AI Discord](https://datatalks.club/slack.html). Join the [`#Definitive AI`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel.
 
-To make discussions in Slack more organized:
+To make discussions in Discord more organized:
 
 * Follow [these recommendations](asking-questions.md) when asking for help
-* Read the [DataTalks.Club community guidelines](https://datatalks.club/slack/guidelines.html)
+* Read the [Definitive AI community guidelines](https://datatalks.club/slack/guidelines.html)
 
 """, unsafe_allow_html=True)
 
