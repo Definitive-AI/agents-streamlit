@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import time
+import os
 
 st.html("""
 <style>
@@ -28,7 +29,7 @@ st.title("Agent Generator from Process Documentation")
 st.title("Agent Generator - Storage")
 st.subheader('Enter saved SessionId to access created Agents')
 
-url = "http://localhost:5000"
+url = os.environ['DEFAI_URL']
 
 session_id = st.text_input("Enter Session ID")
 

@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import time
+import os
 
 st.html("""
 <style>
@@ -40,7 +41,7 @@ st.title("Agent Generator - Process Documentation")
 st.subheader('Upload process documentation to generate Agents')
 
 
-url = ""
+url = os.environ['DEFAI_URL']
 headers = {"Authorization": f"{defai_api_key}"}
 
 # Upload file
