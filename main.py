@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import streamlit as st
 from st_pages import Page, show_pages, add_page_title, Section
 
@@ -45,10 +43,12 @@ with st.expander("Sign up here"):
 st.markdown("""
 ### 📓 Guide
 
-To get a Definitive AI API Key, just sign up above.            
+Sign up through the above link to receive a Definitive AI API Key.            
 
 [Anthropic API Key Guide](https://docs.anthropic.com/en/docs/getting-access-to-claude)
-
+            
+[Process Documentation Example](http://officeautomata.blob.core.windows.net/officeautomata-documents/PDD%20Example.docx)
+            
 
 ### ❔ Asking for help in Discord
 

@@ -41,7 +41,7 @@ st.title("Agent Generator - Process Documentation")
 st.subheader('Upload process documentation to generate Agents')
 
 
-url = os.environ['DEFAI_URL']
+url = st.secrets["DEFAI_URL"]
 headers = {"Authorization": f"{defai_api_key}"}
 
 # Upload file

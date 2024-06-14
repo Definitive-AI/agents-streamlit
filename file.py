@@ -29,7 +29,7 @@ st.title("Agent Generator from Process Documentation")
 st.title("Agent Generator - Storage")
 st.subheader('Enter saved SessionId to access created Agents')
 
-url = os.environ['DEFAI_URL']
+url = st.secrets["DEFAI_URL"]
 
 session_id = st.text_input("Enter Session ID")
 

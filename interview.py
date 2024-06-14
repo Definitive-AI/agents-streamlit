@@ -42,7 +42,7 @@ with st.sidebar:
 st.title("Agent Generator - Process Documentation")
 st.subheader('Chat with Eva to generate Agents')
 
-url = os.environ['DEFAI_URL']
+url = st.secrets["DEFAI_URL"]
 
 headers = {"Authorization": f"{defai_api_key}"}
 
