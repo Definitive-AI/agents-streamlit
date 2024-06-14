@@ -3,7 +3,7 @@ from pathlib import Path
 import streamlit as st
 from st_pages import Page, show_pages, add_page_title, Section
 
-add_page_title() 
+#add_page_title() 
 
 st.html("""
 <style>
@@ -30,6 +30,9 @@ show_pages(
     ]
 )
 
+st.markdown("""<img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/Logo.png" height="200" />""", unsafe_allow_html=True) 
+
+
 st.markdown("---")
 
 with st.expander("Sign up here"):
@@ -42,7 +45,9 @@ with st.expander("Sign up here"):
 st.markdown("""
 ### 📓 Guide
 
+To get a Definitive AI API Key, just sign up above.            
 
+[Anthropic API Key Guide](https://docs.anthropic.com/en/docs/getting-access-to-claude)
 
 
 ### ❔ Asking for help in Discord
