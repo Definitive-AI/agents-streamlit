@@ -12,6 +12,9 @@ st.html("""
     span {
         color: white;
     }
+    p {
+        color: white;
+    }
 }
 </style>
 """)

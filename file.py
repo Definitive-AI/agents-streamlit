@@ -12,9 +12,13 @@ st.html("""
     span {
         color: white;
     }
+    p {
+        color: white;
+    }
 }
 </style>
 """)
+
 
 with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
