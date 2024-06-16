@@ -1,7 +1,20 @@
 import streamlit as st
-from st_pages import Page, show_pages, add_page_title, Section
+from st_pages import Page, show_pages, add_page_title, Section, add_indentation
 
 #add_page_title() 
+add_indentation()
+
+show_pages(
+    [
+        Page("main.py", "Definitive AI"),
+        Section("Generators", "🧙‍♂️"),
+        Page("documentation.py", "Process Documentation", "🛠️", in_section=True),
+        Page("interview.py", "Interview", "🛠️", in_section=True),
+        Section("Storage", "💾"),
+        Page("file.py", "Download", "🛠️", in_section=True),
+        Page("form.py", "Signup",  icon="📩", in_section=False ),
+    ]
+)
 
 st.html("""
 <style>
@@ -16,18 +29,6 @@ st.html("""
 }
 </style>
 """)
-
-show_pages(
-    [
-        Page("main.py", "Definitive AI"),
-        Section("Generators", "🧙‍♂️"),
-        Page("documentation.py", "Process Documentation", "🛠️", in_section=True),
-        Page("interview.py", "Interview", "🛠️", in_section=True),
-        Section("Storage", "💾"),
-        Page("file.py", "Download", "🛠️", in_section=True),
-        Page("form.py", "Signup",  icon="📩", in_section=False ),
-    ]
-)
 
 st.markdown("""<img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/Logo.png" height="150" />""", unsafe_allow_html=True) 
 
