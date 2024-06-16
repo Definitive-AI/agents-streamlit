@@ -27,7 +27,7 @@ add_indentation()
 with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
 
-st.title("Agent Generator")
+st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header("Saved Agents")
 st.subheader('Enter saved SessionId to access generated Agents')
 

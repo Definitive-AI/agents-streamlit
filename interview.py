@@ -42,7 +42,7 @@ with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
     text = st.markdown('Generator SessionID:\n' + session_id)
 
-st.title("Agent Generator")
+st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header('Interview')
 st.subheader('Chat with Eva to generate Agents')
 
