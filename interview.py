@@ -4,6 +4,9 @@ import streamlit as st
 import requests
 from typing import Dict
 import time
+from st_pages import add_indentation
+
+add_indentation()
 
 st.html("""
 <style>

@@ -1,16 +1,39 @@
 import streamlit as st
 import requests
+from st_pages import add_indentation
 
+add_indentation()
+
+st.html("""
+<style>
+[data-testid=stSidebar] {
+        background-color: #212750;
+    }
+[data-testid="stSidebarContent"] {
+    color: white;
+    span {
+        color: white;
+    }
+    p {
+        color: white;
+    }
+}
+</style>
+""")
 
 def submit_form():
     # Get user input values
-    name = st.session_state.name
+    first_name = st.session_state.first_name
+    last_name = st.session_state.last_name
     email = st.session_state.email
+    experience = st.session_state.langchain_experience
     use_case = st.session_state.use_case
     # Create payload for POST request
     payload = {
-        "name": name,
+        "first_name": first_name,
+        "last_name": last_name,
         "email": email,
+        "experience": experience,
         "use_case": use_case
     }
 
@@ -26,9 +49,30 @@ def submit_form():
 
 st.title("User Sign-Up")
 
+langchain_experience_options = [
+        "No experience",
+        "Less than 1 year",
+        "1-2 years",
+        "2-3 years",
+        "3-5 years",
+        "More than 5 years"
+    ]
+
+use_case_options = [
+        "Personal projects",
+        "Academic research",
+        "Business applications",
+        "Data analysis",
+        "Chatbot development",
+        "Knowledge management",
+        "Other"
+    ]
+
 with st.form("registration_form"):
-    st.text_input("Name", key="name")
+    st.text_input("Name", key="first_name")
+    st.text_input("Name", key="last_name")
     st.text_input("Email", key="email")
-    st.text_area("Use Case", key="use_case")
+    st.selectbox("Langchain Experience", options=langchain_experience_options, key="langchain_experience")
+    st.selectbox("Use Case", options=use_case_options, key="use_case")
     st.form_submit_button("Register", on_click=submit_form)
 

@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 import time
 import os
+from st_pages import add_indentation
+
+add_indentation()
 
 st.html("""
 <style>
