@@ -42,7 +42,8 @@ with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
     text = st.markdown('Generator SessionID:\n' + session_id)
 
-st.title("Agent Generator\nInterview")
+st.title("Agent Generator")
+st.header('Interview')
 st.subheader('Chat with Eva to generate Agents')
 
 url = st.secrets["DEFAI_URL"]

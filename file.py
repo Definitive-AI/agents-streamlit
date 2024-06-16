@@ -27,7 +27,8 @@ add_indentation()
 with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
 
-st.title("Agent Storage")
+st.title("Agent Generator")
+st.header("Saved Agents")
 st.subheader('Enter saved SessionId to access generated Agents')
 
 url = st.secrets["DEFAI_URL"]
