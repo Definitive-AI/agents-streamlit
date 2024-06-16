@@ -40,7 +40,7 @@ with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
     text = st.markdown('Generator SessionID:\n' + session_id)
 
-st.title("Agent Generator - Process Documentation")
+st.title("Agent Generator\nProcess Documentation")
 st.subheader('Upload process documentation to generate Agents')
 
 
