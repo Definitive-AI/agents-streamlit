@@ -25,6 +25,8 @@ show_pages(
         Page("interview.py", "Interview", in_section=True),
         Section("Storage", "💾"),
         Page("file.py", "Download", in_section=True),
+        Section("Signup", "💾"),
+        Page("form.py", "Signup", in_section=True),
     ]
 )
 
