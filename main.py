@@ -21,14 +21,14 @@ show_pages(
     [
         Page("main.py", "Definitive AI"),
         Section("Generators", "🧙‍♂️"),
-        Page("documentation.py", "Process Documentation"),
-        Page("interview.py", "Interview"),
+        Page("documentation.py", "Process Documentation", in_section=True),
+        Page("interview.py", "Interview", in_section=True),
         Section("Storage", "💾"),
-        Page("file.py", "Download"),
+        Page("file.py", "Download", in_section=True),
     ]
 )
 
-st.markdown("""<img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/Logo.png" height="200" />""", unsafe_allow_html=True) 
+st.markdown("""<img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/Logo.png" height="150" />""", unsafe_allow_html=True) 
 
 
 st.markdown("---")
