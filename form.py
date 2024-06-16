@@ -69,8 +69,8 @@ use_case_options = [
     ]
 
 with st.form("registration_form"):
-    st.text_input("Name", key="first_name")
-    st.text_input("Name", key="last_name")
+    st.text_input("First Name", key="first_name")
+    st.text_input("Last Name", key="last_name")
     st.text_input("Email", key="email")
     st.selectbox("Langchain Experience", options=langchain_experience_options, key="langchain_experience")
     st.selectbox("Use Case", options=use_case_options, key="use_case")
