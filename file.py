@@ -4,8 +4,6 @@ import time
 import os
 from st_pages import add_indentation
 
-add_indentation()
-
 st.html("""
 <style>
 [data-testid=stSidebar] {
@@ -23,6 +21,8 @@ st.html("""
 </style>
 """)
 
+
+add_indentation()
 
 with st.sidebar:
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")

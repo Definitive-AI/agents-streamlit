@@ -2,8 +2,6 @@ import streamlit as st
 import requests
 from st_pages import add_indentation
 
-add_indentation()
-
 st.html("""
 <style>
 [data-testid=stSidebar] {
@@ -20,6 +18,8 @@ st.html("""
 }
 </style>
 """)
+
+add_indentation()
 
 def submit_form():
     # Get user input values
