@@ -70,6 +70,10 @@ With Definitive AI, organizations can:
 Definitive AI provides two main generators for creating AI agents:
 
 ### Process Documentation 
+Using existing process documentation like the example below, you can upload the document, and AI Agents will be created from it.
+            
+[Process Documentation Example](http://officeautomata.blob.core.windows.net/officeautomata-documents/PDD%20Example.docx)
+            
 1. Navigate to the Process Documentation generator.
 2. Select the process documentation file(s) you want to upload. You can drag and drop files or browse to select them. The limit is 200MB per file.
 3. Definitive AI will analyze the provided documentation and generate optimized AI agents based on the extracted requirements. 
@@ -78,6 +82,7 @@ Definitive AI provides two main generators for creating AI agents:
 6. Once the agent generation is complete, you will receive an email notification. The generated agents can then be accessed in the Storage section.
 
 ### Interview
+
 1. Go to the Interview generator. 
 2. Choose a screenshot to upload that provides context for the interview. You can drag and drop the file or browse to select it.
 3. Enter your message to start the interview with Eva, Definitive AI's interview agent. Eva will ask a series of questions to understand your process in detail.
@@ -101,7 +106,7 @@ Sign up through the above link to receive a Definitive AI API Key.
 
 [Anthropic API Key Guide](https://docs.anthropic.com/en/docs/getting-access-to-claude)
             
-[Process Documentation Example](http://officeautomata.blob.core.windows.net/officeautomata-documents/PDD%20Example.docx)
+
             
 
 ### ❔ Asking for help in Discord
