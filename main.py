@@ -44,9 +44,7 @@ with st.expander("Sign up here"):
 
 st.markdown("""
 ### 📓 User Guide
-            
-# Definitive AI User Guide
-
+ 
 ## Introduction
 Definitive AI is a cutting-edge solution that harnesses the power of GPT to enable organizations to seamlessly develop and deploy AI agents. By simply providing process documentation or user interviews, Definitive AI can automatically extract requirements, design optimized agent architectures, and implement the agents within your existing systems and workflows.
 
