@@ -35,32 +35,39 @@ st.markdown("""<img src="https://raw.githubusercontent.com/Definitive-AI-Testing
 
 st.markdown("---")
 
-with st.expander("Sign up here"):
-    st.markdown("""
-    
-    <a href="https://definitive-ai.com/"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
-
+st.markdown("""
+<a href="https://definitive-ai.com/"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
 """, unsafe_allow_html=True)
 
 st.markdown("""
 ### 📓 User Guide
  
 ## Introduction
-Definitive AI is a cutting-edge solution that harnesses the power of GPT to enable organizations to seamlessly develop and deploy AI agents. By simply providing process documentation or user interviews, Definitive AI can automatically extract requirements, design optimized agent architectures, and implement the agents within your existing systems and workflows.
+Definitive AI is a groundbreaking developer tool that leverages the power of GPT to revolutionize the creation and deployment of AI agents. By simply providing process documentation or participating in a structured interview, developers can automatically generate comprehensive code for sophisticated AI agents, complete with all necessary components and configurations.
 
 ### Why Definitive AI?
-Traditionally, developing AI agents has been a complex and time-consuming process, requiring significant expertise in AI design and implementation. Even with advanced toolkits and frameworks, translating real-world requirements into optimized agent architectures remains a major challenge. 
+As a developer, creating robust AI agents involves numerous complex tasks: defining agent types, implementing tools, managing context and memory, configuring inputs and outputs, crafting system prompts, setting up triggers and decision-making processes, and integrating human input. Definitive AI streamlines this entire process, allowing you to focus on high-level design and integration rather than low-level implementation details.
 
-Definitive AI breaks through these limitations by leveraging GPT's advanced natural language processing capabilities. It can understand and extract key information from unstructured data sources like process documents and user interviews. This eliminates the need for manual requirements gathering and design, dramatically accelerating the AI agent development lifecycle.
+With Definitive AI, developers can:
 
-With Definitive AI, organizations can:
-- Rapidly prototype and deploy AI agents with minimal effort
-- Ensure agents are optimized for their specific use case and environment
-- Seamlessly integrate agents into existing systems and workflows
-- Scale AI initiatives without needing to expand their in-house AI expertise
+- **Automate Agent Code Generation**: Rapidly produce code for AI agents based on interviews or process documentation.
+- **Define Complex Agent Architectures**: Automatically configure various agent types, tools, and decision-making processes.
+- **Optimize Context and Memory Management**: Generate code for efficient handling of agent context and memory systems.
+- **Streamline I/O and Prompt Engineering**: Automatically create optimized system prompts and I/O configurations.
+- **Implement Triggers and Human-in-the-Loop**: Automatically generate event triggers and human input integration points.
+- **Accelerate Development Cycles**: Significantly reduce time spent on boilerplate code and common AI agent patterns.
+- **Enhance Code Quality and Consistency**: Leverage best practices and optimized patterns in generated agent code.
+
+By automating the intricate details of AI agent implementation, Definitive AI empowers developers to rapidly prototype, iterate, and deploy sophisticated AI systems with minimal manual coding. This tool bridges the gap between high-level agent design and low-level implementation, enabling you to bring your AI agent concepts to life more quickly and efficiently than ever before.
+
+
+## Sign Up
+Limited Beta
+Review applicants, once approved, receive email contain API Key for AI Agent Generator   
+Type of code, example of outputs          
 
 ## Getting Started
-1. Sign up for a Definitive AI account at the signup page. Enter your first name, last name, email, language preference, use case, and register.
+1. Sign up for a Definitive AI account at the signup page. Enter your first name, last name, email, use case, and register.
 
 2. After signing up, you will receive a Definitive API Key. This key is unique to your account and is required to authenticate and access Definitive AI's features. Keep this key secure and do not share it with others. You can manage your key in the account settings.
 

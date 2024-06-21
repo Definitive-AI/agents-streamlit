@@ -51,11 +51,10 @@ st.title("User Sign-Up")
 
 langchain_experience_options = [
         "No experience",
-        "Less than 1 year",
+        "3-6 Months",
+        "6 Months-1 year",
         "1-2 years",
         "2-3 years",
-        "3-5 years",
-        "More than 5 years"
     ]
 
 use_case_options = [
@@ -68,11 +67,18 @@ use_case_options = [
         "Other"
     ]
 
+feedback = [
+        "Yes",
+        "No"
+    ]
+
+
 with st.form("registration_form"):
     st.text_input("First Name", key="first_name")
     st.text_input("Last Name", key="last_name")
     st.text_input("Email", key="email")
     st.selectbox("Langchain Experience", options=langchain_experience_options, key="langchain_experience")
     st.selectbox("Use Case", options=use_case_options, key="use_case")
+    st.selectbox("Do you have time to give feedback and participate in the Discord community?", options=feedback, key="feedback")
     st.form_submit_button("Register", on_click=submit_form)
 
