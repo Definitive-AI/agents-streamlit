@@ -59,12 +59,7 @@ With Definitive AI, developers can:
 - **Enhance Code Quality and Consistency**: Leverage best practices and optimized patterns in generated agent code.
 
 By automating the intricate details of AI agent implementation, Definitive AI empowers developers to rapidly prototype, iterate, and deploy sophisticated AI systems with minimal manual coding. This tool bridges the gap between high-level agent design and low-level implementation, enabling you to bring your AI agent concepts to life more quickly and efficiently than ever before.
-
-
-## Sign Up
-Limited Beta
-Review applicants, once approved, receive email contain API Key for AI Agent Generator   
-Type of code, example of outputs          
+   
 
 ## Getting Started
 1. Sign up for a Definitive AI account at the signup page. Enter your first name, last name, email, use case, and register.
