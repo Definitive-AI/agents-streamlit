@@ -36,14 +36,14 @@ st.markdown("""<img src="https://raw.githubusercontent.com/Definitive-AI-Testing
 st.markdown("---")
 
 st.markdown("""
-<a href="https://definitive-ai.com/"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
+<a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
 """, unsafe_allow_html=True)
 
 st.markdown("""
 ### 📓 User Guide
  
 ## Introduction
-Definitive AI is a groundbreaking developer tool that leverages the power of GPT to revolutionize the creation and deployment of AI agents. By simply providing process documentation or participating in a structured interview, developers can automatically generate comprehensive code for sophisticated AI agents, complete with all necessary components and configurations.
+[Definitive AI](hhttps://definitive-ai.com/) is a groundbreaking developer tool that leverages the power of GPT to revolutionize the creation and deployment of AI agents. By simply providing process documentation or participating in a structured interview, developers can automatically generate comprehensive code for sophisticated AI agents, complete with all necessary components and configurations.
 
 ### Why Definitive AI?
 As a developer, creating robust AI agents involves numerous complex tasks: defining agent types, implementing tools, managing context and memory, configuring inputs and outputs, crafting system prompts, setting up triggers and decision-making processes, and integrating human input. Definitive AI streamlines this entire process, allowing you to focus on high-level design and integration rather than low-level implementation details.
