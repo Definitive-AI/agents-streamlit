@@ -66,7 +66,11 @@ By automating the intricate details of AI agent implementation, Definitive AI em
 
 2. After signing up, you will receive a Definitive API Key. This key is unique to your account and is required to authenticate and access Definitive AI's features. Keep this key secure and do not share it with others. You can manage your key in the account settings.
 
-3. To use Definitive AI's generators, you will also need an Anthropic API Key. This key allows Definitive AI to access Anthropic's GPT models which power the agent generation. You can sign up for an Anthropic API key at [https://www.anthropic.com](https://www.anthropic.com). See the Anthropic API Key Guide for more details on obtaining and using your key.
+3. To use Definitive AI's generators, you will also need an Anthropic API Key. This key allows Definitive AI to access Anthropic's GPT models which power the agent generation. You can sign up for an Anthropic API key at [Anthropic API Key Guide](https://docs.anthropic.com/en/docs/getting-access-to-claude).
+
+## Example Outputs:
+[Creative Writing Agents](https://github.com/Definitive-AI-Testing/CreativeWritingAgents)
+            
 
 ## Generators
 Definitive AI provides two main generators for creating AI agents:
@@ -105,11 +109,7 @@ To make Discord discussions more organized:
 By leveraging Definitive AI's powerful GPT-based system, you can rapidly design and deploy optimized AI agents to automate and enhance your organization's processes. The intuitive generators streamline the development workflow, while the Storage area provides easy access to your created assets.
             
 Sign up through the above link to receive a Definitive AI API Key.            
-
-[Anthropic API Key Guide](https://docs.anthropic.com/en/docs/getting-access-to-claude)
-            
-
-            
+     
 
 ### ❔ Asking for help in Discord
 
