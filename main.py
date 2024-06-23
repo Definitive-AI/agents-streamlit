@@ -69,8 +69,15 @@ By automating the intricate details of AI agent implementation, Definitive AI em
 3. To use Definitive AI's generators, you will also need an Anthropic API Key. This key allows Definitive AI to access Anthropic's GPT models which power the agent generation. You can sign up for an Anthropic API key at [Anthropic API Key Guide](https://docs.anthropic.com/en/docs/getting-access-to-claude).
 
 ## Example Outputs:
-[Creative Writing Agents](https://github.com/Definitive-AI-Testing/CreativeWritingAgents)
             
+[Multi-Agent Systems](https://github.com/Definitive-AI/Agent-Examples)
+
+These examples demonstrate how multiple AI agents can work together:
+
+    Content Writing Agents: A system of agents that collectively gather, analyze, and synthesize research data.
+    Email Agents: Multiple agents managing an email account and saving short term data.
+    LinkedIn Agents: A system of agents that follow and write comments for a specific target.
+           
 
 ## Generators
 Definitive AI provides two main generators for creating AI agents:
