@@ -70,13 +70,14 @@ By automating the intricate details of AI agent implementation, Definitive AI em
 
 ## Example Outputs:
             
-[Multi-Agent Systems](https://github.com/Definitive-AI/Agent-Examples)
+### [Multi-Agent Systems](https://github.com/Definitive-AI/Agent-Examples)
 
 These examples demonstrate how multiple AI agents can work together:
 
-    Content Writing Agents: A system of agents that collectively gather, analyze, and synthesize research data.
-    Email Agents: Multiple agents managing an email account and saving short term data.
-    LinkedIn Agents: A system of agents that follow and write comments for a specific target.
+1. **Content Writing Agents**: A system of agents that collectively gather, analyze, and synthesize research data.
+2. **Email Agents**: Multiple agents managing an email account and saving short term data.
+3. **LinkedIn Agents**: A system of agents that follow and write comments for a specific target.
+
            
 
 ## Generators
