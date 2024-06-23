@@ -120,15 +120,6 @@ By leveraging Definitive AI's powerful GPT-based system, you can rapidly design 
 Sign up through the above link to receive a Definitive AI API Key.            
      
 
-### ❔ Asking for help in Discord
-
-The best way to get support is to use [Definitive AI Discord](https://datatalks.club/slack.html). Join the [`#Definitive AI`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel.
-
-To make discussions in Discord more organized:
-
-* Follow [these recommendations](asking-questions.md) when asking for help
-* Read the [Definitive AI community guidelines](https://datatalks.club/slack/guidelines.html)
-
 """, unsafe_allow_html=True)
 
 hide_streamlit_style = """
@@ -139,3 +130,12 @@ footer {visibility: hidden;}
 """
 
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+# ### ❔ Asking for help in Discord
+
+# The best way to get support is to use [Definitive AI Discord](https://datatalks.club/slack.html). Join the [`#Definitive AI`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel.
+
+# To make discussions in Discord more organized:
+
+# * Follow [these recommendations](asking-questions.md) when asking for help
+# * Read the [Definitive AI community guidelines](https://datatalks.club/slack/guidelines.html)
