@@ -36,9 +36,7 @@ st.markdown("""<p align="center">
 
 st.markdown("---")
 
-st.markdown("""<p align="center" markdown="1">
-### Join our Private Beta!
-</p>
+st.markdown("""<p align="center" markdown="1"><span style="display:block" class="note">**Join our Private Beta!**</span></p>
 <p align="center">
 <a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
 </p>""", unsafe_allow_html=True)
