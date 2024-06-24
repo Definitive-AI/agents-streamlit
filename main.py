@@ -73,13 +73,30 @@ By automating the intricate details of AI agent implementation, Definitive AI em
             
 ### [Multi-Agent Systems](https://github.com/Definitive-AI/Agent-Examples)
 
-These examples demonstrate how multiple AI agents can work together:
+These examples demonstrate how multiple AI agents types can work together:
 
 1. **Content Writing Agents**: A system of agents that collectively gather, analyze, and synthesize research data.
-2. **Email Agents**: Multiple agents managing an email account and saving short term data.
+2. **Email Agents**: Multiple agents managing an email account and documenting expiring emails.
 3. **LinkedIn Agents**: A system of agents that follow and write comments for a specific target.
+    
+### [Solution Design Document](https://github.com/Definitive-AI/Agent-Examples/blob/main/CreativeWritingAgents/documentation/Content%20Workflow%20Agents%20Solution%20Design%20Document.docx)
+            
+The Agent Generator automatically builds a comprehensive Solution Design Document (SDD) based on the requirements extracted from your process documentation or interview. The SDD includes:
 
-           
+1. System Architecture: Detailed breakdown of the AI agent's components and their interactions.
+2. Data Flow Diagrams: Visual representations of how information moves through the system.
+3. Tooling Specifications: Clearly defined interfaces for integrating the AI agent with existing systems.
+
+The SDD serves as a blueprint for implementing the AI agents, ensuring all stakeholders have a clear understanding of the system's design and functionality.
+
+### [Compliance Review](https://github.com/Definitive-AI/Agent-Examples/blob/main/CreativeWritingAgents/documentation/Content%20Workflow%20Agents%20Compliance%20Review.docx)
+
+As part of the AI agent generation process, Definitive AI conducts an automated Compliance Review to ensure the proposed solution adheres to relevant regulations and industry standards. This review includes:
+
+1. Regulatory Checklist: Verification of compliance with applicable laws and regulations (e.g., GDPR, HIPAA).
+3. Data Privacy Analysis: Review of data handling practices to ensure user privacy protection.
+4. Audit Trail Capabilities: Confirmation that the system can provide necessary logging for compliance audits.
+5. Recommendations: Suggested modifications or additional safeguards to enhance compliance.   
 
 ## Generators
 Definitive AI provides two main generators for creating AI agents:
@@ -120,6 +137,10 @@ By leveraging Definitive AI's powerful GPT-based system, you can rapidly design 
 Sign up through the above link to receive a Definitive AI API Key.            
      
 
+# ### ❔ Asking for help in Discord
+
+# The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.            
+
 """, unsafe_allow_html=True)
 
 hide_streamlit_style = """
@@ -131,9 +152,6 @@ footer {visibility: hidden;}
 
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-# ### ❔ Asking for help in Discord
-
-# The best way to get support is to use [Definitive AI Discord](https://datatalks.club/slack.html). Join the [`#Definitive AI`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel.
 
 # To make discussions in Discord more organized:
 
