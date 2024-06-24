@@ -79,7 +79,7 @@ These examples demonstrate how multiple AI agents types can work together:
 2. **Email Agents**: Multiple agents managing an email account and documenting expiring emails.
 3. **LinkedIn Agents**: A system of agents that follow and write comments for a specific target.
     
-### [Solution Design Document](https://github.com/Definitive-AI/Agent-Examples/blob/main/CreativeWritingAgents/documentation/Content%20Workflow%20Agents%20Solution%20Design%20Document.docx)
+### [Solution Design Documents](https://github.com/Definitive-AI/Agent-Examples/blob/main/CreativeWritingAgents/documentation/Content%20Workflow%20Agents%20Solution%20Design%20Document.docx)
             
 The Agent Generator automatically builds a comprehensive Solution Design Document (SDD) based on the requirements extracted from your process documentation or interview. The SDD includes:
 
@@ -89,7 +89,7 @@ The Agent Generator automatically builds a comprehensive Solution Design Documen
 
 The SDD serves as a blueprint for implementing the AI agents, ensuring all stakeholders have a clear understanding of the system's design and functionality.
 
-### [Compliance Review](https://github.com/Definitive-AI/Agent-Examples/blob/main/CreativeWritingAgents/documentation/Content%20Workflow%20Agents%20Compliance%20Review.docx)
+### [Compliance Reviews](https://github.com/Definitive-AI/Agent-Examples/blob/main/CreativeWritingAgents/documentation/Content%20Workflow%20Agents%20Compliance%20Review.docx)
 
 As part of the AI agent generation process, Definitive AI conducts an automated Compliance Review to ensure the proposed solution adheres to relevant regulations and industry standards. This review includes:
 
