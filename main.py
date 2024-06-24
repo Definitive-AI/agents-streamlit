@@ -123,7 +123,7 @@ Using existing process documentation like the example below, you can upload the 
 6. After the interview, Eva will generate process documentation and AI agent designs based on the information gathered. You will receive an email notification when the generation is complete, and the outputs will be available in the Storage area.
 
 ## Storage
-The Storage section allows you to access, download, and manage the AI agents and documentation generated using the Process Documentation or Interview tools. Simply navigate to Storage and select the desired file.
+The Storage section allows you to access, download, and manage the AI agents and documentation generated using the Process Documentation or Interview tools. Simply navigate to Storage, input the Session ID of the generator, and click Download.
 
 ## Support
 If you need any assistance or have questions about using Definitive AI, the best way to get support is through the Definitive AI Discord. Join the #definitive-ai channel to discuss with the community. 
@@ -136,10 +136,9 @@ By leveraging Definitive AI's powerful GPT-based system, you can rapidly design 
             
 Sign up through the above link to receive a Definitive AI API Key.            
      
+### ❔ Asking for help in Discord
 
-# ### ❔ Asking for help in Discord
-
-# The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.            
+The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.            
 
 """, unsafe_allow_html=True)
 
