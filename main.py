@@ -30,7 +30,7 @@ st.html("""
 </style>
 """)
 
-st.markdown("""<p align="center">
+st.markdown("""<p align="center" style="font-size: 25px; color: blue;">
 <img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/Logo.png" height="150" />
 </p>""", unsafe_allow_html=True) 
 
