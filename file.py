@@ -39,7 +39,8 @@ if session_id:
     if not defai_api_key:
         st.warning("Please enter your Definitive API Key in the sidebar.")
     else:
-        headers = {"Authorization": f"Bearer {defai_api_key}"}
+        #headers = {"Authorization": f"Bearer {defai_api_key}"}
+        headers = {"Authorization": f"{defai_api_key}"}
         try:
             response = requests.get(f"{url}/api/file/{session_id}", headers=headers)
             response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
