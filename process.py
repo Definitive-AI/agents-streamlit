@@ -38,7 +38,8 @@ session_id = _get_session()
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
-    text = st.markdown('Generator SessionID:\n' + session_id)
+    text = st.markdown('Generator SessionID:\n')
+    text = st.markdown(session_id)
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 # st.title("Agent Generator")
