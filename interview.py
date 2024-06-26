@@ -5,6 +5,7 @@ import requests
 from typing import Dict
 import time
 from st_pages import add_indentation
+from threading import Thread
 
 st.html("""
 <style>
@@ -48,10 +49,21 @@ st.subheader('Chat with Eva to generate Agents')
 
 url = st.secrets["DEFAI_URL"]
 
-headers = {"Authorization": f"{defai_api_key}"}
+headers = {"defai_api_key": f"{defai_api_key}"}
 
 # Upload file
 uploaded_file = st.file_uploader("Choose a screenshot to upload")
+
+def ping():
+    check = True
+    while check:
+        chat_response = requests.post(url=url + "/api/ping", headers=headers, json={"session_id": session_id, })
+        status = chat_response.json()["status"]
+        if status != "":
+            st.info("Progress: " + status, icon="ℹ️")
+            if status == "Complete":
+                check = False
+        
 
 if uploaded_file is not None:
     # Make API call to upload the file
@@ -74,6 +86,8 @@ if anth_api_key != "":
     chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
     assistant_response = chat_response.json()["response"]     
     st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
+    t = Thread(target=ping, args=())
+    t.start()
 
 if prompt := st.chat_input("Enter your message"):
     st.session_state.messages.append({"role": "user", "content": prompt})
