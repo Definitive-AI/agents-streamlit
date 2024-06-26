@@ -54,7 +54,7 @@ st.subheader('Chat with Eva to generate Agents')
 
 url = st.secrets["DEFAI_URL"]
 
-headers = {"defai_api_key": f"{defai_api_key}"}
+headers = {"Authorization": f"{defai_api_key}"}
 
 # Upload file
 uploaded_file = st.file_uploader("Choose a screenshot to upload")
