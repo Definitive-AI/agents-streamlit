@@ -87,7 +87,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if anth_api_key != "":
+if anth_api_key != "" and defai_api_key != "":
     chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
     assistant_response = chat_response.json()["response"]     
     st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
