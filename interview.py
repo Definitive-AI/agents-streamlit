@@ -61,6 +61,7 @@ uploaded_file = st.file_uploader("Choose a screenshot to upload")
 
 def ping():
     check = True
+    status = ""
     while check:
         chat_response = requests.post(url=url + "/api/ping", headers=headers, json={"session_id": session_id, })
         status = chat_response.json()["status"]
@@ -68,7 +69,14 @@ def ping():
             st.info("Progress: " + status, icon="ℹ️")
             if status == "Complete":
                 check = False
-        
+    st.success("File processing completed.")
+    download_url = url + f"/api/download/{session_id}"
+    st.download_button(
+        label="Download Processed File",
+        data=requests.get(url=download_url,headers=headers).content,
+        file_name=f"processed_{uploaded_file.name}",
+        mime="application/octet-stream",
+    )
 
 if uploaded_file is not None:
     # Make API call to upload the file
