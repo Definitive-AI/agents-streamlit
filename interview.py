@@ -107,8 +107,9 @@ if anth_api_key != "" and defai_api_key != "" and temp:
     temp = False
     with st.chat_message("assistant"):
         st.markdown(assistant_response)
-    t = Thread(target=ping, args=())
-    t.start()
+        
+    # t = Thread(target=ping, args=())
+    # t.start()
 
 async def get_response(prompt):     
     chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt, "session_id": session_id, "anth_api_key": anth_api_key})
