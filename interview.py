@@ -64,12 +64,15 @@ def ping():
     check = True
     status = ""
     while check:
+        time.sleep(10)
         chat_response = requests.post(url=url + "/api/ping", headers=headers, json={"session_id": session_id, })
         status = chat_response.json()["status"]
+        
         if status != "":
             st.info("Progress: " + status, icon="ℹ️")
             if status == "Complete":
                 check = False
+        
     st.success("File processing completed.")
     download_url = url + f"/api/download/{session_id}"
     st.download_button(
