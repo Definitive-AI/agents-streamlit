@@ -100,7 +100,6 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-print(len(st.session_state.messages))
 if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
     chat_response = requests.post(url=url + "/api/start_chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
     assistant_response = chat_response.json()["response"]     
@@ -126,8 +125,7 @@ if prompt := st.chat_input("Enter your message"):
         st.markdown(prompt)
 
     # Make API call to get assistant response
+    async def main():
+        await get_response(prompt)
 
-    # async def main():
-    #     await get_response(prompt)
-
-    # asyncio.run(main())
+    asyncio.run(main())
