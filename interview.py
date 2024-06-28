@@ -2,6 +2,7 @@ import os
 import sys
 import streamlit as st
 import requests
+import asyncio
 from typing import Dict
 import time
 from st_pages import add_indentation
@@ -106,15 +107,22 @@ if anth_api_key != "" and defai_api_key != "" and temp:
     t = Thread(target=ping, args=())
     t.start()
 
-if prompt := st.chat_input("Enter your message"):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    # Make API call to get assistant response
+async def get_response(prompt):     
     chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt, "session_id": session_id, "anth_api_key": anth_api_key})
     assistant_response = chat_response.json()["response"]
 
     st.session_state.messages.append({"role": "assistant", "content": assistant_response})
     with st.chat_message("assistant"):
         st.markdown(assistant_response)    
+
+if prompt := st.chat_input("Enter your message"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    # Make API call to get assistant response
+
+    async def main():
+        await get_response(prompt)
+
+    asyncio.run(main())
