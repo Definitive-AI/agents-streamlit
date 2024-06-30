@@ -35,8 +35,6 @@ def _get_session():
 
 session_id = _get_session()
 
-st.info('This is a purely informational message', icon="ℹ️")
-
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
