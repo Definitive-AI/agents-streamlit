@@ -59,8 +59,9 @@ with st.sidebar:
             #data=data, 
             files = {"file": uploaded_file}
             #"sessionid": session_id
-            chat_response = requests.post(url=url + "/api/screenshot", headers={"Authorization": f"{defai_api_key}", "sessionid":session_id}, files=files)
+            chat_response = requests.post(url=url + "/api/screenshot", headers={"Authorization": f"{defai_api_key}", "sessionid": session_id}, files=files)
             st.success(f"Screenshot uploaded successfully")    
+            st.info(str(chat_response.json()))
             assistant_response = chat_response.json()["response"]     
             st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
             
