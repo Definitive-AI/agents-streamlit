@@ -35,6 +35,8 @@ def _get_session():
 
 session_id = _get_session()
 
+st.info('This is a purely informational message', icon="ℹ️")
+
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
@@ -64,7 +66,7 @@ if uploaded_file is not None:
     # Check file status every 10 seconds
     status = "processing"
     while status != "complete":
-        time.sleep(10)
+        time.sleep(30)
         status_response = requests.get(url=url + f"/api/status/{session_id}", headers=headers)
         status = status_response.json()["status"]
         st.info(f"File status: {status}")
