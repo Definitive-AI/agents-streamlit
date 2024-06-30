@@ -59,7 +59,7 @@ with st.sidebar:
             #data=data, 
             files = {"file": uploaded_file}
             #"sessionid": session_id
-            headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "Content-Type": "application/octet-stream" }
+            headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id}
             chat_response = requests.post(url=url + "/api/screenshot", headers=headers, files=files)
             # st.success(f"Screenshot uploaded successfully")    
             # st.info(str(chat_response.json()))
