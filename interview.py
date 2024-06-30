@@ -58,7 +58,7 @@ url = st.secrets["DEFAI_URL"]
 headers = {"Authorization": f"{defai_api_key}"}
 
 # Upload file
-uploaded_file = st.file_uploader("Choose a screenshot to upload")
+
 
 def ping():
     check = True
@@ -78,21 +78,11 @@ def ping():
     st.download_button(
         label="Download Processed File",
         data=requests.get(url=download_url,headers=headers).content,
-        file_name=f"processed_{uploaded_file.name}",
+        file_name= session_id + "_agents.zip",
         mime="application/octet-stream",
     )
 
-if uploaded_file is not None:
-    # Make API call to upload the file
 
-    data = {'defai_api_key': defai_api_key, "session_id": session_id}    
-    files = {"file": uploaded_file}
-    #"sessionid": session_id
-    response = requests.post(url=url + "/api/upload", headers=headers, data=data, files=files)
-    st.success(f"Screenshot uploaded successfully")
-
-
-# Chat system
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -129,3 +119,13 @@ if prompt := st.chat_input("Enter your message"):
         await get_response(prompt)
 
     asyncio.run(main())
+
+uploaded_file = st.file_uploader("Choose a screenshot to upload")
+if uploaded_file is not None:
+    # Make API call to upload the file
+
+    data = {'defai_api_key': defai_api_key, "session_id": session_id}    
+    files = {"file": uploaded_file}
+    #"sessionid": session_id
+    response = requests.post(url=url + "/api/upload", headers=headers, data=data, files=files)
+    st.success(f"Screenshot uploaded successfully")    
