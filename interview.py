@@ -41,6 +41,9 @@ session_id = _get_session()
 
 url = st.secrets["DEFAI_URL"]
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
@@ -48,14 +51,20 @@ with st.sidebar:
     text = st.markdown(session_id)
 
     uploaded_file = st.file_uploader("Choose a screenshot to upload")
-    if uploaded_file is not None:
-        # Make API call to upload the file
+    if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
+        if uploaded_file is not None:
+            # Make API call to upload the file
 
-        data = {'defai_api_key': defai_api_key, "session_id": session_id}    
-        files = {"file": uploaded_file}
-        #"sessionid": session_id
-        response = requests.post(url=url + "/api/upload", headers={"Authorization": f"{defai_api_key}"}, data=data, files=files)
-        st.success(f"Screenshot uploaded successfully")    
+            data = {"session_id": session_id}    
+            files = {"file": uploaded_file}
+            #"sessionid": session_id
+            chat_response = requests.post(url=url + "/api/upload", headers={"Authorization": f"{defai_api_key}"}, data=data, files=files)
+            st.success(f"Screenshot uploaded successfully")    
+            assistant_response = chat_response.json()["response"]     
+            st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
+            
+            with st.chat_message("assistant"):
+                st.markdown(assistant_response)
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header('Interview')
@@ -91,9 +100,6 @@ def ping():
         mime="application/octet-stream",
     )
 
-
-if "messages" not in st.session_state:
-    st.session_state.messages = []
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
