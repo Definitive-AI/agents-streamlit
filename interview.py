@@ -39,11 +39,23 @@ def _get_session():
 
 session_id = _get_session()
 
+url = st.secrets["DEFAI_URL"]
+
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
     text = st.markdown('Generator SessionID:\n')
     text = st.markdown(session_id)
+
+    uploaded_file = st.file_uploader("Choose a screenshot to upload")
+    if uploaded_file is not None:
+        # Make API call to upload the file
+
+        data = {'defai_api_key': defai_api_key, "session_id": session_id}    
+        files = {"file": uploaded_file}
+        #"sessionid": session_id
+        response = requests.post(url=url + "/api/upload", headers={"Authorization": f"{defai_api_key}"}, data=data, files=files)
+        st.success(f"Screenshot uploaded successfully")    
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header('Interview')
@@ -53,11 +65,8 @@ st.subheader('Chat with Eva to generate Agents')
 # ### Chat with Eva to generate Agents
 # """)
 
-url = st.secrets["DEFAI_URL"]
 
 headers = {"Authorization": f"{defai_api_key}"}
-
-# Upload file
 
 
 def ping():
@@ -119,13 +128,3 @@ if prompt := st.chat_input("Enter your message"):
         await get_response(prompt)
 
     asyncio.run(main())
-
-uploaded_file = st.file_uploader("Choose a screenshot to upload")
-if uploaded_file is not None:
-    # Make API call to upload the file
-
-    data = {'defai_api_key': defai_api_key, "session_id": session_id}    
-    files = {"file": uploaded_file}
-    #"sessionid": session_id
-    response = requests.post(url=url + "/api/upload", headers=headers, data=data, files=files)
-    st.success(f"Screenshot uploaded successfully")    
