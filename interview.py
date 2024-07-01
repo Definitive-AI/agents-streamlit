@@ -133,7 +133,8 @@ if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key 
     # t = Thread(target=ping, args=())
     # t.start()
 
-async def get_response(prompt,uploaded_file):     
+async def get_response(prompt,uploaded_file):  
+    headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_api_key": anth_api_key}   
     if uploaded_file is None:
         chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt,})
         assistant_response = chat_response.json()["response"]
