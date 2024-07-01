@@ -8,6 +8,11 @@ import time
 from st_pages import add_indentation
 from threading import Thread
 
+# from file_chat_input import file_chat_input
+# from streamlit_float import float_init
+
+# float_init()
+
 st.html("""
 <style>
 [data-testid=stSidebar] {
@@ -114,16 +119,16 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
-    chat_response = requests.post(url=url + "/api/start_chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
-    assistant_response = chat_response.json()["response"]     
-    st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
+# if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
+#     chat_response = requests.post(url=url + "/api/start_chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
+#     assistant_response = chat_response.json()["response"]     
+#     st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
     
-    with st.chat_message("assistant"):
-        st.markdown(assistant_response)
+#     with st.chat_message("assistant"):
+#         st.markdown(assistant_response)
 
-    # t = Thread(target=ping, args=())
-    # t.start()
+#     # t = Thread(target=ping, args=())
+#     # t.start()
 
 async def get_response(prompt):     
     chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt, "session_id": session_id, "anth_api_key": anth_api_key})
