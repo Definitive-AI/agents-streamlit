@@ -143,8 +143,9 @@ if prompt := st.chat_input("Enter your message"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    uploaded_file = None
     # Make API call to get assistant response
-    async def main():
-        await get_response(prompt)
+    # async def main():
+    #     await get_response(prompt)
 
-    asyncio.run(main())
+    # asyncio.run(main())
