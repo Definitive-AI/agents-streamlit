@@ -54,6 +54,9 @@ with st.sidebar:
     if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
         if uploaded_file is not None:
             # Make API call to upload the file
+            st.session_state.messages.append({"role": "user", "content": "Uploaded screenshot"})
+            with st.chat_message("user"):
+                st.markdown("Uploaded screenshot")
 
             data = {"session_id": session_id}    
             #data=data, 
