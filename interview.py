@@ -147,7 +147,8 @@ if prompt := st.chat_input("Enter your message"):
         st.markdown(prompt)
 
     uploaded_file = None
-    st.session_state.uploader_key = 0
+    st.session_state.uploader_key += 1
+    st.experimental_rerun()
     # Make API call to get assistant response
     # async def main():
     #     await get_response(prompt)
