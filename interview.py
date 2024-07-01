@@ -49,13 +49,16 @@ url = st.secrets["DEFAI_URL"]
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "uploader_key" not in st.session_state:
+    st.session_state.uploader_key = 0    
+
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
     text = st.markdown('Generator SessionID:\n')
     text = st.markdown(session_id)
 
-    uploaded_file = st.file_uploader("Choose a screenshot to upload")
+    uploaded_file = st.file_uploader("Choose a screenshot to upload", key=f"uploader_{st.session_state.uploader_key}")
     if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
         if uploaded_file is not None:
             # Make API call to upload the file
@@ -144,6 +147,7 @@ if prompt := st.chat_input("Enter your message"):
         st.markdown(prompt)
 
     uploaded_file = None
+    st.session_state.uploader_key = 0
     # Make API call to get assistant response
     # async def main():
     #     await get_response(prompt)
