@@ -59,29 +59,29 @@ with st.sidebar:
     text = st.markdown(session_id)
 
     uploaded_file = st.file_uploader("Choose a screenshot to upload", key=f"uploader_{st.session_state.uploader_key}")
-    if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
-        if uploaded_file is not None:
-            # Make API call to upload the file
-            st.session_state.messages.append({"role": "user", "content": "Uploaded screenshot"})
-            with st.chat_message("user"):
-                st.markdown("Uploaded screenshot")
+    # if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
+    #     if uploaded_file is not None:
+    #         # Make API call to upload the file
+    #         st.session_state.messages.append({"role": "user", "content": "Uploaded screenshot"})
+    #         with st.chat_message("user"):
+    #             st.markdown("Uploaded screenshot")
 
-            data = {"session_id": session_id}    
-            #data=data, 
-            files = {"file": uploaded_file}
-            #"sessionid": session_id
-            headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id}
-            chat_response = requests.post(url=url + "/api/screenshot", headers=headers, files=files)
-            # st.success(f"Screenshot uploaded successfully")    
-            uploaded_file = None
-            try:
-                assistant_response = chat_response.json()["response"]     
-                #assistant_response = str(chat_response.json())
-                st.session_state.messages.append({"role": "assistant", "content": assistant_response})               
-                # with st.chat_message("assistant"):
-                #     st.markdown(assistant_response)
-            except Exception as exn:
-                print(exn)
+    #         data = {"session_id": session_id}    
+    #         #data=data, 
+    #         files = {"file": uploaded_file}
+    #         #"sessionid": session_id
+    #         headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id}
+    #         chat_response = requests.post(url=url + "/api/screenshot", headers=headers, files=files)
+    #         # st.success(f"Screenshot uploaded successfully")    
+    #         uploaded_file = None
+    #         try:
+    #             assistant_response = chat_response.json()["response"]     
+    #             #assistant_response = str(chat_response.json())
+    #             st.session_state.messages.append({"role": "assistant", "content": assistant_response})               
+    #             # with st.chat_message("assistant"):
+    #             #     st.markdown(assistant_response)
+    #         except Exception as exn:
+    #             print(exn)
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header('Interview')
@@ -92,7 +92,7 @@ st.subheader('Chat with Eva to generate Agents')
 # """)
 
 
-headers = {"Authorization": f"{defai_api_key}"}
+headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_api_key": anth_api_key}
 
 
 def ping():
@@ -122,35 +122,40 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
-#     chat_response = requests.post(url=url + "/api/start_chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
-#     assistant_response = chat_response.json()["response"]     
-#     st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
+if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
+    chat_response = requests.post(url=url + "/api/start_chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
+    assistant_response = chat_response.json()["response"]     
+    st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
     
-#     with st.chat_message("assistant"):
-#         st.markdown(assistant_response)
+    with st.chat_message("assistant"):
+        st.markdown(assistant_response)
 
-#     # t = Thread(target=ping, args=())
-#     # t.start()
+    # t = Thread(target=ping, args=())
+    # t.start()
 
-async def get_response(prompt):     
-    chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt, "session_id": session_id, "anth_api_key": anth_api_key})
-    assistant_response = chat_response.json()["response"]
+async def get_response(prompt,uploaded_file):     
+    if uploaded_file is None:
+        chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt,})
+        assistant_response = chat_response.json()["response"]
+    else:
+        files = {"file": uploaded_file}
+        chat_response = requests.post(url=url + "/api/screenshot", headers=headers, json={"prompt": prompt,}, files=files)
+        assistant_response = chat_response.json()["response"]
 
     st.session_state.messages.append({"role": "assistant", "content": assistant_response})
     with st.chat_message("assistant"):
-        st.markdown(assistant_response)    
+        st.markdown(assistant_response)   
+
+    st.session_state.uploader_key += 1
+    st.experimental_rerun()         
 
 if prompt := st.chat_input("Enter your message"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
-
-    uploaded_file = None
-    st.session_state.uploader_key += 1
-    st.experimental_rerun()
+    
     # Make API call to get assistant response
-    # async def main():
-    #     await get_response(prompt)
+    async def main():
+        await get_response(prompt,uploaded_file)
 
-    # asyncio.run(main())
+    asyncio.run(main())
