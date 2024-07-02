@@ -62,26 +62,27 @@ if uploaded_file is not None:
         chat_response = requests.post(url=url + "/api/upload", headers=headers1, data=data, files=files)
         assistant_response = chat_response.json()["response"]
 
-    st.success(f"File uploaded successfully.")
+        st.success(f"File uploaded successfully: " + assistant_response)
 
-    # Check file status every 10 seconds
-    status = "processing"
-    while status != "complete":
-        time.sleep(30)
-        status_response = requests.get(url=url + f"/api/status/{session_id}", headers=headers)
-        status = status_response.json()["status"]
-        st.info(f"File status: {status}")
+        if assistant_response == "Processing":
+            # Check file status every 10 seconds
+            status = "processing"
+            while status != "complete":
+                time.sleep(30)
+                status_response = requests.get(url=url + f"/api/status/{session_id}", headers=headers)
+                status = status_response.json()["status"]
+                st.info(f"File status: {status}")
 
-    # Enable download button when status is complete
-    if status == "complete":
-        st.success("File processing completed.")
-        download_url = url + f"/api/download/{session_id}"
-        st.download_button(
-            label="Download Processed File",
-            data=requests.get(url=download_url,headers=headers).content,
-            file_name=f"processed_{uploaded_file.name}",
-            mime="application/octet-stream",
-        )
+            # Enable download button when status is complete
+            if status == "complete":
+                st.success("File processing completed.")
+                download_url = url + f"/api/download/{session_id}"
+                st.download_button(
+                    label="Download Processed File",
+                    data=requests.get(url=download_url,headers=headers).content,
+                    file_name=f"processed_{uploaded_file.name}",
+                    mime="application/octet-stream",
+                )
 
 # Chat system
 if "messages" not in st.session_state:
