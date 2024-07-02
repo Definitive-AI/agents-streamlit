@@ -140,6 +140,7 @@ async def get_response(prompt,uploaded_file):
         assistant_response = chat_response.json()["response"]
     else:
         files = {"file": uploaded_file}
+        st.info(str(headers))
         chat_response = requests.post(url=url + "/api/screenshot", headers=headers, json={"prompt": prompt,}, files=files)
         assistant_response = chat_response.json()["response"]
 
