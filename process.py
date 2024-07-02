@@ -58,7 +58,8 @@ if uploaded_file is not None:
     headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
     if uploaded_file is not None:
         files = {"file": uploaded_file}
-        chat_response = requests.post(url=url + "/api/upload", headers=headers1, files=files)
+        data = {'upload_file': uploaded_file.name}
+        chat_response = requests.post(url=url + "/api/upload", headers=headers1, data=data, files=files)
         assistant_response = chat_response.json()["response"]
 
     st.success(f"File uploaded successfully.")
