@@ -142,7 +142,7 @@ Sign up through the above link to receive a Definitive AI API Key.
 
 The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.     
 
-## Privacy and Data Policy
+### Privacy and Data Policy
 
 At Definitive AI, we take your privacy and data security seriously. Please review the following information regarding our data practices during the beta phase:
 
@@ -166,9 +166,15 @@ Updates to Privacy Practices
 - We will notify all users of any significant changes to our data handling procedures.
 
 By using Definitive AI during the beta phase, you acknowledge and agree to these data practices. If you have any concerns or questions about our privacy and data policies, please contact our support team through the Definitive AI Discord channel.
-
-
 """, unsafe_allow_html=True)
+
+st.markdown("---")
+
+st.markdown("""<p align="center" style="font-size: 23px;" markdown="1"><b>Join our Private Beta</b></p>
+<p align="center">
+<a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
+</p>""", unsafe_allow_html=True)
+
 
 hide_streamlit_style = """
 <style>
