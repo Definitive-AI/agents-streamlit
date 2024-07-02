@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import streamlit as st
 import requests
 import asyncio
@@ -141,7 +142,8 @@ async def get_response(prompt,uploaded_file):
     else:
         files = {"file": uploaded_file}
         st.info(str(headers))
-        chat_response = requests.post(url=url + "/api/screenshot", headers=headers, json={"prompt": prompt,}, files=files)
+        data=json.dumps({"prompt": prompt})
+        chat_response = requests.post(url=url + "/api/screenshot", headers=headers, data=data, files=files)
         assistant_response = chat_response.json()["response"]
 
     st.session_state.messages.append({"role": "assistant", "content": assistant_response})
