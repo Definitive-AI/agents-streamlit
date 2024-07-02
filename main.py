@@ -12,6 +12,7 @@ show_pages(
         Page("interview.py", "Interview", "🛠️", in_section=True),
         Section("Storage", "💾"),
         Page("file.py", "Download", "🛠️", in_section=True),
+        Page("management.py", "Management", "🛠️", in_section=True),
         Page("form.py", "Signup",  icon="📩", in_section=False ),
     ]
 )
@@ -139,7 +140,33 @@ Sign up through the above link to receive a Definitive AI API Key.
      
 ### ❔ Asking for help in Discord
 
-The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.            
+The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.     
+
+## Privacy and Data
+
+At Definitive AI, we take your privacy and data security seriously. Please review the following information regarding our data practices during the beta phase:
+
+Data Usage and Retention
+- During the beta phase, data submitted to Definitive AI will be used to improve our product and services.
+- This includes process documentation, interview responses, and generated AI agent designs.
+- We anonymize and aggregate data to protect individual privacy while allowing us to enhance our systems.
+- You can delete your data at any time through the Management panel
+
+API Key Security
+- Anthropic API keys are not stored or retained by Definitive AI.
+- Your API key is used only for the duration of your session to access necessary services.
+- Always keep your API key confidential and do not share it with others.
+
+Third-Party Services
+- Definitive AI may use third-party services for data processing and storage.
+- All third-party services are vetted to ensure they meet our security and privacy standards.
+
+Updates to Privacy Practices
+- As we transition from beta to full release, our privacy practices may be updated.
+- We will notify all users of any significant changes to our data handling procedures.
+
+By using Definitive AI during the beta phase, you acknowledge and agree to these data practices. If you have any concerns or questions about our privacy and data policies, please contact our support team through the Definitive AI Discord channel.
+
 
 """, unsafe_allow_html=True)
 

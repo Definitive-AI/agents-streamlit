@@ -29,7 +29,7 @@ with st.sidebar:
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header("Saved Agents")
-st.subheader('Enter a SessionId to access generated Agents')
+st.subheader('Enter a SessionId to delete generated Agents')
 
 url = st.secrets["DEFAI_URL"]
 
@@ -42,16 +42,12 @@ if session_id:
         #headers = {"Authorization": f"Bearer {defai_api_key}"}
         headers = {"Authorization": f"{defai_api_key}"}
         try:
-            download_url = f"/api/download/{session_id}"
+            download_url = f"/api/delete/{session_id}"
             download_response = requests.get(url + download_url, headers=headers)
             download_response.raise_for_status()
-
-            st.download_button(
-                label="Download Processed File",
-                data=download_response.content,
-                file_name=f"processed_file_{session_id}.zip",
-                mime="application/octet-stream",
-            )
+            response = download_response.json()["response"]
+            if response == "Complete":
+                st.info("Agents Deleted")
         except requests.exceptions.RequestException as e:
             st.error(f"Error retrieving file: {str(e)}")
         except KeyError:
