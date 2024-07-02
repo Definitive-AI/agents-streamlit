@@ -55,4 +55,4 @@ if session_id:
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 else:
-    st.info("Please enter a Session ID to retrieve the file.")
+    st.info("Please enter a Session ID to delete the agents.")

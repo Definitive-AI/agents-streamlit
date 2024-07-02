@@ -54,12 +54,14 @@ headers = {"Authorization": f"{defai_api_key}"}
 uploaded_file = st.file_uploader("Select Process Documentation to upload")
 
 if uploaded_file is not None:
-    # Make API call to upload the file
-    data = {'defai_api_key': defai_api_key, "session_id": session_id}  
-    files = {"file": uploaded_file}
-    response = requests.post(url=url + "/api/upload", headers=headers, data=data, files=files)
-    file_id = response.json()["file_id"]
-    st.success(f"File uploaded successfully. File ID: {file_id}")
+
+    headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
+    if uploaded_file is not None:
+        files = {"file": uploaded_file}
+        chat_response = requests.post(url=url + "/api/screenshot", headers=headers1, files=files)
+        assistant_response = chat_response.json()["response"]
+
+    st.success(f"File uploaded successfully.")
 
     # Check file status every 10 seconds
     status = "processing"
