@@ -142,7 +142,7 @@ Sign up through the above link to receive a Definitive AI API Key.
 
 The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.     
 
-## Privacy and Data
+## Privacy and Data Policy
 
 At Definitive AI, we take your privacy and data security seriously. Please review the following information regarding our data practices during the beta phase:
 
