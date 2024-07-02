@@ -36,7 +36,7 @@ st.markdown("""<p align="center"">
 
 st.markdown("---")
 
-st.markdown("""<p align="center" style="font-size: 23px; color: blue;" markdown="1"><b><em>Join our Private Beta!<em></b></p>
+st.markdown("""<p align="center" style="font-size: 23px;" markdown="1"><b>Join our Private Beta</b></p>
 <p align="center">
 <a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
 </p>""", unsafe_allow_html=True)
@@ -108,19 +108,19 @@ Using existing process documentation like the example below, you can upload the 
 [Process Documentation Example](http://officeautomata.blob.core.windows.net/officeautomata-documents/PDD%20Example.docx)
             
 1. Navigate to the Process Documentation generator.
-2. Select the process documentation file(s) you want to upload. You can drag and drop files or browse to select them. The limit is 200MB per file.
+2. Enter your Anthropic Key and Defintive AI key, and Select the process documentation file(s) you want to upload. You can drag and drop files or browse to select them. The limit is 200MB per file.
 3. Definitive AI will analyze the provided documentation and generate optimized AI agents based on the extracted requirements. 
 4. Each Process Documentation generation session is assigned a unique Generator SessionID. You can use this ID to track and reference the specific generation task.
-5. The average cost per Process Documentation generation is $5-10, and the typical processing time is 15-30 minutes, depending on the complexity and size of the provided documentation.
+5. The average Anthropic cost per Process Documentation Agent generation is $5-10, and the typical processing time is 10-20 minutes, depending on the complexity and size of the provided documentation.
 6. Once the agent generation is complete, you will receive an email notification. The generated agents can then be accessed in the Storage section.
 
 ### Interview
 
 1. Go to the Interview generator. 
-2. Choose a screenshot to upload that provides context for the interview. You can drag and drop the file or browse to select it.
-3. Enter your message to start the interview with Eva, Definitive AI's interview agent. Eva will ask a series of questions to understand your process in detail.
+2. Enter your Anthropic Key and Defintive AI key to start the interview with Eva, Definitive AI's interview agent. Eva will ask a series of questions to understand your process in detail.
+3. You may choose a screenshot to upload that provides context for the interview at any time.            
 4. Like Process Documentation generation, each Interview session has a unique Generator SessionID for tracking and reference.
-5. The average cost per Interview-based generation is $5-10, and the typical interview duration is 15-30 minutes.
+5. The average Anthropic cost per Interview-based Agent generation is $5-10, and the typical processing time is 10-20 minutes, depending on the complexity of the process.
 6. After the interview, Eva will generate process documentation and AI agent designs based on the information gathered. You will receive an email notification when the generation is complete, and the outputs will be available in the Storage area.
 
 ## Storage

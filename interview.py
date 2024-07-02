@@ -8,11 +8,8 @@ from typing import Dict
 import time
 from st_pages import add_indentation
 from threading import Thread
-
-# from file_chat_input import file_chat_input
-# from streamlit_float import float_init
-
-# float_init()
+from streamlit.runtime import get_instance
+from streamlit.runtime.scriptrunner import get_script_run_ctx
 
 st.html("""
 <style>
@@ -34,8 +31,7 @@ st.html("""
 add_indentation()
 
 def _get_session():
-    from streamlit.runtime import get_instance
-    from streamlit.runtime.scriptrunner import get_script_run_ctx
+
     runtime = get_instance()
     session_id = get_script_run_ctx().session_id
     session_info = runtime._session_mgr.get_session_info(session_id)
@@ -87,11 +83,6 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header('Interview')
 st.subheader('Chat with Eva to generate Agents')
-
-# st.markdown("""## Interview
-# ### Chat with Eva to generate Agents
-# """)
-
 
 headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_api_key": anth_api_key}
 
