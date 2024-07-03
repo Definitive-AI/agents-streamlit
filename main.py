@@ -155,8 +155,9 @@ Data Usage and Retention
 
 API Key Security
 - Anthropic API keys are not stored or retained by Definitive AI.
-- Your API key is used only for the duration of your session to access necessary services.
+- Your API key is used only for the duration of your session to generate the AI Agents.
 - Always keep your API key confidential and do not share it with others.
+- It is recommended to setup and use temporary Anthropic keys, and disable/delete them after the Agents are created.
 
 Third-Party Services
 - Definitive AI may use third-party services for data processing and storage.
