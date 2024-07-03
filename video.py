@@ -65,6 +65,6 @@ st.markdown("---")
 
 st.markdown("""<p align="center" style="font-size: 23px;" markdown="1"><b>Coming Soon</b></p>""", unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2,3])
-with col2:
-    st.button(":gray-background[Join Meet]", type="primary")
+col1, col2, col3, col4, col5 = st.columns([1,2,3,4,5])
+with col3:
+    st.button(":gray-background[Join Meet]")
