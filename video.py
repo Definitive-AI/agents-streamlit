@@ -65,6 +65,6 @@ st.markdown("---")
 
 st.markdown("""<p align="center" style="font-size: 23px;" markdown="1"><b>Coming Soon</b></p>""", unsafe_allow_html=True)
 
-col1, col2, col3, col4, col5 = st.columns([1,2,3,4,5])
-with col3:
-    st.button(":gray-background[Join Meet]")
+st.markdown("""<p align="center">
+<a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI/agents-streamlit/master/.streamlit/meeting-button.png" height="50" /></a>
+</p>""", unsafe_allow_html=True)
