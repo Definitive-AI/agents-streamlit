@@ -40,7 +40,7 @@ st.markdown("---")
 
 st.markdown("""<p align="center" style="font-size: 23px;" markdown="1"><b>Join our Private Beta</b></p>
 <p align="center">
-<a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
+<a href="https://definitive-ai.streamlit.app/Signup"><img src="https://raw.githubusercontent.com/Definitive-AI-Testing/agents-streamlit/master/.streamlit/sign-up.jpg" height="50" /></a>
 </p>""", unsafe_allow_html=True)
 
 st.markdown("""
