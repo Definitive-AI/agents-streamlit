@@ -8,8 +8,9 @@ show_pages(
     [
         Page("main.py", "Definitive AI"),
         Section("Generators", "🧙‍♂️"),
+        Page("interview.py", "Chat Interview", "🛠️", in_section=True),
+        Page("video.py", "Video Interview", "🛠️", in_section=True),
         Page("process.py", "Process Documentation", "🛠️", in_section=True),
-        Page("interview.py", "Interview", "🛠️", in_section=True),
         Section("Storage", "💾"),
         Page("file.py", "Download", "🛠️", in_section=True),
         Page("management.py", "Management", "🛠️", in_section=True),

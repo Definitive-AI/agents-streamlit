@@ -81,7 +81,7 @@ with st.sidebar:
     #             print(exn)
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
-st.header('Interview')
+st.header('Chat Interview')
 st.subheader('Chat with Eva to generate Agents')
 
 headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_api_key": anth_api_key}
