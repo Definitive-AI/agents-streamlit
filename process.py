@@ -36,6 +36,8 @@ def _get_session():
 
 session_id = _get_session()
 
+url = st.secrets["DEFAI_URL"]
+
 with st.sidebar:
     anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
     defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
@@ -71,16 +73,11 @@ st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1
 st.header('Process Documentation')
 st.subheader('Upload process documentation to generate Agents')
 
-
-url = st.secrets["DEFAI_URL"]
-headers = {"Authorization": f"{defai_api_key}"}
-
-# Upload file
 uploaded_file = st.file_uploader("Select Process Documentation to upload")
 
 placeholder = st.empty()
 
-if uploaded_file is not None:
+if uploaded_file is not None and defai_api_key != "":
 
     headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
     if uploaded_file is not None:
