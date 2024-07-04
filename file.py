@@ -37,7 +37,8 @@ url = st.secrets["DEFAI_URL"]
 session_id = st.text_input("Enter Session ID")
 
 def callback_button() -> None:
-    st.experimental_rerun()   
+    global session_id
+    session_id = None
 
 if session_id:
     if not defai_api_key:
