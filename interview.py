@@ -58,8 +58,8 @@ with st.sidebar:
 
     uploaded_file = st.file_uploader("Choose a screenshot to upload", key=f"uploader_{st.session_state.uploader_key}")
 
-    saveto_gsheet = st.button(label=":blue[Download Current Progress]",type="secondary")
-    if saveto_gsheet and defai_api_key != "":
+    progress = st.button(label=":blue[Download Current Progress]",type="secondary")
+    if progress and defai_api_key != "":
         headers = {"Authorization": f"{defai_api_key}"}
         download_url = f"/api/download/{session_id}"
         download_response = requests.get(url + download_url, headers=headers)        
