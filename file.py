@@ -51,7 +51,7 @@ if session_id:
                 st.download_button(
                     label="Download Processed File",
                     data=BytesIO(download_response.content),
-                    file_name=f"processed_file_{session_id}.zip",
+                    file_name=session_id+"_agents.zip",
                     mime="application/octet-stream",
                 )
             else:
