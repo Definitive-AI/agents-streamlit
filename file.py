@@ -36,6 +36,9 @@ url = st.secrets["DEFAI_URL"]
 
 session_id = st.text_input("Enter Session ID")
 
+def callback_button() -> None:
+    st.experimental_rerun()   
+
 if session_id:
     if not defai_api_key:
         st.warning("Please enter your Definitive API Key in the sidebar.")
@@ -53,6 +56,7 @@ if session_id:
                     data=BytesIO(download_response.content),
                     file_name=session_id+"_agents.zip",
                     mime="application/octet-stream",
+                    on_click=callback_button
                 )
             else:
                 st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
