@@ -42,6 +42,30 @@ with st.sidebar:
     text = st.markdown('Generator SessionID:\n')
     text = st.markdown(session_id)
 
+    progress = st.button(label=":blue[Download Current Progress]",type="secondary")
+    if progress and defai_api_key != "":
+        headers = {"Authorization": f"{defai_api_key}"}
+        download_url = f"/api/download/{session_id}"
+        download_response = requests.get(url + download_url, headers=headers)        
+        try:
+            if download_response.headers['Content-Type'] == 'application/zip':
+                st.download_button(
+                    label="Download Processed File",
+                    data=BytesIO(download_response.content),
+                    file_name=session_id+"_agents.zip",
+                    mime="application/octet-stream",
+                )
+            elif download_response.headers['Content-Type'] == 'application/json':
+                st.error(download_response.json())                         
+            else:
+                st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
+        except requests.exceptions.RequestException as e:
+            st.error(f"Error retrieving file: {str(e)}")
+        except KeyError:
+            st.error("Invalid response format. 'file_id' not found in the response.")
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
+
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 # st.title("Agent Generator")
 st.header('Process Documentation')
@@ -89,29 +113,7 @@ if uploaded_file is not None:
                     mime="application/octet-stream",
                 )
         
-        progress = st.button(label=":blue[Download Current Progress]",type="secondary")
-        if progress and defai_api_key != "":
-            headers = {"Authorization": f"{defai_api_key}"}
-            download_url = f"/api/download/{session_id}"
-            download_response = requests.get(url + download_url, headers=headers)        
-            try:
-                if download_response.headers['Content-Type'] == 'application/zip':
-                    st.download_button(
-                        label="Download Processed File",
-                        data=BytesIO(download_response.content),
-                        file_name=session_id+"_agents.zip",
-                        mime="application/octet-stream",
-                    )
-                elif download_response.headers['Content-Type'] == 'application/json':
-                    st.error(download_response.json())                         
-                else:
-                    st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
-            except requests.exceptions.RequestException as e:
-                st.error(f"Error retrieving file: {str(e)}")
-            except KeyError:
-                st.error("Invalid response format. 'file_id' not found in the response.")
-            except Exception as e:
-                st.error(f"An error occurred: {str(e)}")
+
 
 # Chat system
 if "messages" not in st.session_state:
