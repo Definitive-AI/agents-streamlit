@@ -58,6 +58,8 @@ if session_id:
                     mime="application/octet-stream",
                     on_click=callback_button
                 )
+            elif download_response.headers['Content-Type'] == 'application/json':
+                st.error(download_response.json())                         
             else:
                 st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
         except requests.exceptions.RequestException as e:
