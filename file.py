@@ -3,6 +3,7 @@ import requests
 import time
 import os
 from st_pages import add_indentation
+from io import BytesIO
 
 st.html("""
 <style>
@@ -46,12 +47,15 @@ if session_id:
             download_response = requests.get(url + download_url, headers=headers)
             download_response.raise_for_status()
 
-            st.download_button(
-                label="Download Processed File",
-                data=download_response.content,
-                file_name=f"processed_file_{session_id}.zip",
-                mime="application/octet-stream",
-            )
+            if download_response.headers['Content-Type'] == 'application/zip':
+                st.download_button(
+                    label="Download Processed File",
+                    data=BytesIO(download_response.content),
+                    file_name=f"processed_file_{session_id}.zip",
+                    mime="application/octet-stream",
+                )
+            else:
+                st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
         except requests.exceptions.RequestException as e:
             st.error(f"Error retrieving file: {str(e)}")
         except KeyError:
