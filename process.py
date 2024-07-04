@@ -53,6 +53,8 @@ headers = {"Authorization": f"{defai_api_key}"}
 # Upload file
 uploaded_file = st.file_uploader("Select Process Documentation to upload")
 
+placeholder = st.empty()
+
 if uploaded_file is not None:
 
     headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
@@ -69,9 +71,11 @@ if uploaded_file is not None:
             status = "processing"
             while status != "complete":
                 time.sleep(30)
+                placeholder.empty()
                 status_response = requests.get(url=url + f"/api/status/{session_id}", headers=headers)
                 status = status_response.json()["status"]
-                st.info(f"File status: {status}")
+                placeholder.info(f"File status: {status}")
+                
 
             # Enable download button when status is complete
             if status == "complete":
