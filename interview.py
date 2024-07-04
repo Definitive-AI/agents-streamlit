@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+from io import BytesIO
 import streamlit as st
 import requests
 import asyncio
@@ -56,29 +57,31 @@ with st.sidebar:
     text = st.markdown(session_id)
 
     uploaded_file = st.file_uploader("Choose a screenshot to upload", key=f"uploader_{st.session_state.uploader_key}")
-    # if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
-    #     if uploaded_file is not None:
-    #         # Make API call to upload the file
-    #         st.session_state.messages.append({"role": "user", "content": "Uploaded screenshot"})
-    #         with st.chat_message("user"):
-    #             st.markdown("Uploaded screenshot")
 
-    #         data = {"session_id": session_id}    
-    #         #data=data, 
-    #         files = {"file": uploaded_file}
-    #         #"sessionid": session_id
-    #         headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id}
-    #         chat_response = requests.post(url=url + "/api/screenshot", headers=headers, files=files)
-    #         # st.success(f"Screenshot uploaded successfully")    
-    #         uploaded_file = None
-    #         try:
-    #             assistant_response = chat_response.json()["response"]     
-    #             #assistant_response = str(chat_response.json())
-    #             st.session_state.messages.append({"role": "assistant", "content": assistant_response})               
-    #             # with st.chat_message("assistant"):
-    #             #     st.markdown(assistant_response)
-    #         except Exception as exn:
-    #             print(exn)
+    saveto_gsheet = st.button("Download Current Progress")
+    if saveto_gsheet and defai_api_key != "":
+        headers = {"Authorization": f"{defai_api_key}"}
+        download_url = f"/api/download/{session_id}"
+        download_response = requests.get(url + download_url, headers=headers)        
+        try:
+            if download_response.headers['Content-Type'] == 'application/zip':
+                st.download_button(
+                    label="Download Processed File",
+                    data=BytesIO(download_response.content),
+                    file_name=session_id+"_agents.zip",
+                    mime="application/octet-stream",
+                )
+            elif download_response.headers['Content-Type'] == 'application/json':
+                st.error(download_response.json())                         
+            else:
+                st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
+        except requests.exceptions.RequestException as e:
+            st.error(f"Error retrieving file: {str(e)}")
+        except KeyError:
+            st.error("Invalid response format. 'file_id' not found in the response.")
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
+
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header('Chat Interview')
