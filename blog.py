@@ -3,6 +3,21 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
+st.html("""
+<style>
+[data-testid=stSidebar] {
+        background-color: #212750;
+    }
+[data-testid="stSidebarContent"] {
+    color: white;
+    span {
+        color: white;
+    }
+}
+</style>
+""")
+
+
 # Connect to the database
 conn = sqlite3.connect('blog.db')
 c = conn.cursor()
