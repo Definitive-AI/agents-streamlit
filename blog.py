@@ -54,19 +54,11 @@ post_temp = """
 """
 
 # Create a sidebar menu with different options
-menu = ["Home", "View Posts", "Add Post", "Search", "Manage"]
+menu = ["Posts", "Add Post", "Search", "Manage"]
 choice = st.sidebar.selectbox("Menu", menu)
 
-# Display the selected option
-if choice == "Home":
-    st.title("Welcome to my blog")
-    st.write("This is a simple blog app built with streamlit and python.")
-    st.write("You can view, add, search, and manage posts using the sidebar menu.")
-    st.write("Enjoy!")
-
-elif choice == "View Posts":
-    st.title("View Posts")
-    st.write("Here you can see all the posts in the blog.")
+if choice == "Posts":
+    st.title("Posts")
     # Get all the posts from the database
     posts = get_all_posts()
     # Display each post as a card

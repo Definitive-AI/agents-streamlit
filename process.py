@@ -88,7 +88,7 @@ if uploaded_file is not None and defai_api_key != "":
 
         st.success(f"File uploaded successfully: " + assistant_response)
 
-        if assistant_response == "Processing":
+        if assistant_response == "Processing" or assistant_response == "Already Processing":
             # Check file status every 10 seconds
             status = "processing"
             while status != "complete":

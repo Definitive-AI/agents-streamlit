@@ -2,12 +2,22 @@ import requests
 import time
 import os
 import streamlit as st
+import sqlite3
 
-url = st.secrets["DEFAI_URL"]
-download_url = url + f"/api/ping"
-download_response = requests.get(download_url)
-print(download_response.json())
+# url = st.secrets["DEFAI_URL"]
+# download_url = url + f"/api/ping"
+# download_response = requests.get(download_url)
+# print(download_response.json())
 
+conn = sqlite3.connect('blog.db')
+c = conn.cursor()
+
+# Create a table if not exists
+c.execute('CREATE TABLE IF NOT EXISTS posts (author TEXT, title TEXT, content TEXT, date DATE)')
+
+c.execute("drop table message_store")
+c.execute("drop table session_store")
+conn.commit()
 
     # if len(st.session_state.messages) != 0 and anth_api_key != "" and defai_api_key != "" :
     #     if uploaded_file is not None:
