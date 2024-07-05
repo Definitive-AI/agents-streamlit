@@ -15,6 +15,7 @@ show_pages(
         Page("file.py", "Download", "🛠️", in_section=True),
         Page("management.py", "Management", "🛠️", in_section=True),
         Page("form.py", "Signup",  icon="📩", in_section=False ),
+        Page("blog.py", "Blog",  icon="📩", in_section=False ),
     ]
 )
 
