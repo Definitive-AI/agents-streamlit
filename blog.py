@@ -69,7 +69,7 @@ post_temp = """
 """
 
 # Create a sidebar menu with different options
-menu = ["Posts", "Add Post", "Search", "Manage"]
+menu = ["Posts", "Search"]
 choice = st.sidebar.selectbox("Menu", menu)
 
 if choice == "Posts":
