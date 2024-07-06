@@ -53,6 +53,23 @@ def delete(session_id):
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")
 
+def stop(session_id):
+    #headers = {"Authorization": f"Bearer {defai_api_key}"}
+    headers = {"Authorization": f"{defai_api_key}"}
+    try:
+        download_url = f"/api/stop/{session_id}"
+        download_response = requests.get(url + download_url, headers=headers)
+        download_response.raise_for_status()
+        response = download_response.json()["response"]
+        if response == "Complete":
+            st.info("Agents Deleted")
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error retrieving file: {str(e)}")
+    except KeyError:
+        st.error("Invalid response format. 'file_id' not found in the response.")
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")        
+
 def download(session_id):
     headers = {"Authorization": f"{defai_api_key}"}
     try:
@@ -104,7 +121,7 @@ if defai_api_key != "":
         df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
         #cols = st.columns([1,1,1,1,1,1,1,1,1])
-        col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
+        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns([1,1,1,1,1,1,1,1,1,1])
         # for col, field_name in zip(cols, ([""] + fields)):
         #     col.write(field_name)
         col1.write("ID") 
@@ -116,6 +133,7 @@ if defai_api_key != "":
         col7.write("Start Time") 
         col8.write("-") 
         col9.write("-") 
+        col10.write("-") 
 
         for x, email in enumerate(df):
             
@@ -131,6 +149,8 @@ if defai_api_key != "":
             do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(df['Session ID'][x]))
             button_down = col9.empty()  # create a placeholder
             down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(df['Session ID'][x]))
+            button_stop = col10.empty()  # create a placeholder
+            down = button_stop.button("Stop Generate", key="Generate" + str(x), on_click=stop(df['Session ID'][x]))
             if do_action:
                 col4.write("Deleted")
                 button_phold.empty()  #  remove button
