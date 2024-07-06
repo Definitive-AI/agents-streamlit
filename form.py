@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
+import time
+import os
 from st_pages import add_indentation
+from io import BytesIO
 
 st.html("""
 <style>
@@ -19,66 +22,83 @@ st.html("""
 </style>
 """)
 
+
 add_indentation()
 
-def submit_form():
-    # Get user input values
-    first_name = st.session_state.first_name
-    last_name = st.session_state.last_name
-    email = st.session_state.email
-    experience = st.session_state.langchain_experience
-    use_case = st.session_state.use_case
-    # Create payload for POST request
-    payload = {
-        "first_name": first_name,
-        "last_name": last_name,
-        "email": email,
-        "experience": experience,
-        "use_case": use_case
-    }
 
-    url = st.secrets["DEFAI_URL"]
-    register_url = url + f"/api/register"
-    # Send POST request to the specified URL
-    response = requests.post(register_url, json=payload)
+st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
+st.header("Form")
+st.subheader('Fill in form to generate Agents')
 
-    if response.status_code == 200:
-        st.success("Registration successful!")
-    else:
-        st.error("Registration failed. Please try again.")
+def _get_session():
+    from streamlit.runtime import get_instance
+    from streamlit.runtime.scriptrunner import get_script_run_ctx
+    runtime = get_instance()
+    session_id = get_script_run_ctx().session_id
+    session_info = runtime._session_mgr.get_session_info(session_id)
+    if session_info is None:
+        raise RuntimeError("Couldn't get your Streamlit Session object.")
+    return session_info.session.id
 
-st.title("User Sign-Up")
+session_id = _get_session()
 
-langchain_experience_options = [
-        "No experience",
-        "3-6 Months",
-        "6 Months-1 year",
-        "1-2 years",
-        "2-3 years",
-    ]
+url = st.secrets["DEFAI_URL"]
 
-use_case_options = [
-        "Personal projects",
-        "Academic research",
-        "Business applications",
-        "Data analysis",
-        "Chatbot development",
-        "Knowledge management",
-        "Other"
-    ]
+with st.sidebar:
+    anth_api_key = st.text_input("Anthropic API Key", key="anth_api_key", type="password")
+    defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
+    text = st.markdown('Generator SessionID:\n')
+    text = st.markdown(session_id)
 
-feedback = [
-        "Yes",
-        "No"
-    ]
+    progress = st.button(label=":blue[Download Current Progress]",type="secondary")
+    if progress and defai_api_key != "":
+        headers = {"Authorization": f"{defai_api_key}"}
+        download_url = f"/api/download/{session_id}"
+        download_response = requests.get(url + download_url, headers=headers)        
+        try:
+            if download_response.headers['Content-Type'] == 'application/zip':
+                st.download_button(
+                    label="Download Processed File",
+                    data=BytesIO(download_response.content),
+                    file_name=session_id+"_agents.zip",
+                    mime="application/octet-stream",
+                )
+            elif download_response.headers['Content-Type'] == 'application/json':
+                st.error(download_response.json())                         
+            else:
+                st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
+        except requests.exceptions.RequestException as e:
+            st.error(f"Error retrieving file: {str(e)}")
+        except KeyError:
+            st.error("Invalid response format. 'file_id' not found in the response.")
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
 
 
-with st.form("registration_form"):
-    st.text_input("First Name", key="first_name")
-    st.text_input("Last Name", key="last_name")
-    st.text_input("Email", key="email")
-    st.selectbox("Langchain Experience", options=langchain_experience_options, key="langchain_experience")
-    st.selectbox("Use Case", options=use_case_options, key="use_case")
-    st.selectbox("Do you have time to give feedback and participate in the Discord community?", options=feedback, key="feedback")
-    st.form_submit_button("Register", on_click=submit_form)
+process_description = st.text_area("Briefly describe the process")
+process_trigger = st.text_area("Identify what starts or triggers this process")
+process_goal = st.text_area("Identify the process's end result or goal")
+process_steps = st.text_area("Outline the main steps in this process")
+step_information = st.text_area("Determine the information or materials needed for each step")
+process_tools = st.text_area("List the systems or tools used in this process")
+process_roles = st.text_area("Describe who is involved in this process and their roles")
+process_challenges = st.text_area("Identify any particularly challenging parts of the process")
+process_improvements = st.text_area("Discuss ideas on how this process could be improved")
+additional_aspects = st.text_area("Cover any important aspects of the process not yet mentioned")
+
+# Button to combine the answers
+if st.button("Combine Answers"):
+    combined_answer = f"Process Description:\n{process_description}\n\n" \
+                      f"Process Trigger:\n{process_trigger}\n\n" \
+                      f"Process Goal:\n{process_goal}\n\n" \
+                      f"Process Steps:\n{process_steps}\n\n" \
+                      f"Step Information:\n{step_information}\n\n" \
+                      f"Process Tools:\n{process_tools}\n\n" \
+                      f"Process Roles:\n{process_roles}\n\n" \
+                      f"Process Challenges:\n{process_challenges}\n\n" \
+                      f"Process Improvements:\n{process_improvements}\n\n" \
+                      f"Additional Aspects:\n{additional_aspects}"
+    
+    st.subheader("Combined Answers")
+    st.text_area("", value=combined_answer, height=400)            
 
