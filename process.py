@@ -91,12 +91,14 @@ if uploaded_file is not None and defai_api_key != "":
         if assistant_response == "Processing" or assistant_response == "Already Processing":
             # Check file status every 10 seconds
             status = "processing"
-            while status != "complete":
-                time.sleep(30)
+            i = 0
+            while status != "Complete" or i < 60:
+                time.sleep(60)
                 placeholder.empty()
                 status_response = requests.get(url=url + f"/api/status/{session_id}", headers=headers)
                 status = status_response.json()["status"]
                 placeholder.info(f"File status: {status}")
+                i += 1
                 
 
             # Enable download button when status is complete

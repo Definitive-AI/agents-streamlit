@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import time
 import os
+import pandas as pd
 from st_pages import add_indentation
 
 st.html("""
@@ -33,12 +34,20 @@ st.subheader('Enter a SessionId to delete generated Agents')
 
 url = st.secrets["DEFAI_URL"]
 
-session_id = st.text_input("Enter Session ID")
 
-if session_id:
-    if not defai_api_key:
-        st.warning("Please enter your Definitive API Key in the sidebar.")
-    else:
+
+if defai_api_key != "":
+    headers = {"Authorization": f"{defai_api_key}"}
+    download_url = f"/api/sessions"
+    download_response = requests.get(url + download_url, headers=headers)
+    data = download_response.json()
+    if "status" not in data:
+        df = pd.read_json()
+        st.dataframe(df, use_container_width=True)
+
+    session_id = st.text_input("Enter Session ID to Delete Agents")
+
+    if session_id:
         #headers = {"Authorization": f"Bearer {defai_api_key}"}
         headers = {"Authorization": f"{defai_api_key}"}
         try:
@@ -54,5 +63,5 @@ if session_id:
             st.error("Invalid response format. 'file_id' not found in the response.")
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
-else:
-    st.info("Please enter a Session ID to delete the agents.")
+    else:
+        st.info("Please enter a Session ID to delete the agents.")
