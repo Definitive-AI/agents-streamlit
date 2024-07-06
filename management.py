@@ -162,3 +162,7 @@ if defai_api_key != "":
                 x += 1
             except:
                 ()
+
+reload = st.button("Refresh")
+if reload:
+    st.rerun()
