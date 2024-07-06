@@ -82,7 +82,7 @@ if defai_api_key != "":
         
         transformed_data = [dict(zip(fields, row)) for row in data]
         df = pd.DataFrame(data)
-        df['Time'] = pd.to_datetime(df['Start Time'], unit='s')
+        df['Start Time'] = pd.to_datetime(df['Start Time'], unit='s')
 
         #cols = st.columns([1,1,1,1,1,1,1,1,1])
         col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
