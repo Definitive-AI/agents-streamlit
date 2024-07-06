@@ -90,13 +90,15 @@ if defai_api_key != "":
         col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
         # for col, field_name in zip(cols, ([""] + fields)):
         #     col.write(field_name)
-        col1.write("") 
+        col1.write("ID") 
         col2.write("Session ID") 
         col3.write("Agents Name") 
         col4.write("Creation Status") 
         col5.write("Input Tokens") 
         col6.write("Output Tokens") 
         col7.write("Start Time") 
+        col8.write("-") 
+        col9.write("-") 
 
         for x, email in enumerate(df):
             
