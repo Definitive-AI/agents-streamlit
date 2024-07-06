@@ -136,10 +136,12 @@ if defai_api_key != "":
         col10.write("-") 
 
         st.info(str(len(df)))
-        for x, email in enumerate(df):
+        df = df.reset_index()  # make sure indexes pair with number of rows
+        x = 1
+        for t1, row in df.iterrows():
             try:
                 col1.write(x)  # index
-                col2.write(df['Session ID'][x])  # email
+                col2.write(row['Session ID'][x])  # email
                 col3.write(df['Agents Name'][x])  # unique ID
                 col4.write(df['Generation Status'][x])   # email status
                 col5.write(df['Input Tokens'][x])  # email
@@ -155,5 +157,6 @@ if defai_api_key != "":
                 if do_action:
                     col4.write("Deleted")
                     button_phold.empty()  #  remove button
+                x += 1
             except:
                 ()
