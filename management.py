@@ -137,31 +137,31 @@ if defai_api_key != "":
         col4.write("Generation Status") 
         col5.write("Input Tokens") 
         col6.write("Output Tokens") 
-        col7.write("Start Time") 
-        col8.write("Delete Agents") 
-        col9.write("Download Agents") 
-        col10.write("Stop Generating Agents") 
-        col11.write("Cost") 
-
+        col7.write("Cost") 
+        col8.write("Start Time") 
+        col9.write("Delete Agents") 
+        col10.write("Download Agents") 
+        col11.write("Stop Generating Agents") 
+    
         df = df.reset_index()  # make sure indexes pair with number of rows
         x = 1
         for t1, row in df.iterrows():
             try:
                 cost = calculate(row['Input Tokens'],row['Output Tokens'])
-                col1.write(x)  # index
+                col1.write(str(x))  # index
                 col2.write(row['Session ID'])  # email
                 col3.write(row['Agents Name'])  # unique ID
-                col4.write(row['Generation Status'])   # email status
-                col5.write(row['Input Tokens'])  # email
-                col6.write(row['Output Tokens'])  # unique ID
-                col7.write(row['Time'])   # email status
-                col11.write("$" + cost)   # email status
-
-                button_phold = col8.empty()  # create a placeholder
+                col4.write(row['Generation Status']) 
+                col5.write(str(row['Input Tokens'])) 
+                col6.write(str(row['Output Tokens']))
+                col7.write("$" + cost)   
+                col8.write(str(row['Time'])) 
+                
+                button_phold = col9.empty()  # create a placeholder
                 delete1 = button_phold.button("Delete", key="Delete" + str(x)) #, on_click=delete(row['Session ID']))
-                button_down = col9.empty()  # create a placeholder
+                button_down = col10.empty()  # create a placeholder
                 download1 = button_down.button("Download", key="Download" + str(x)) #, on_click=download(row['Session ID']))
-                button_stop = col10.empty()  # create a placeholder
+                button_stop = col11.empty()  # create a placeholder
                 stop1 = button_stop.button("Stop", key="Generate" + str(x)) #, on_click=stop(row['Session ID']))
                 if delete1:
                     col4.write("Deleted")
