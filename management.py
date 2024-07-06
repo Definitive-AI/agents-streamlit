@@ -81,7 +81,7 @@ if defai_api_key != "":
         fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Time"]
         
         transformed_data = [dict(zip(fields, row)) for row in data]
-        df = pd.DataFrame(data)
+        df = pd.DataFrame(data,columns=fields)
         st.dataframe(df, use_container_width=True)
         df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
