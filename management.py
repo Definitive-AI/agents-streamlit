@@ -79,17 +79,25 @@ if defai_api_key != "":
     data = download_response.json()
     if "status" not in data:
         fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
-
-        transformed_data = [dict(zip(fields, row)) for row in data]
-        df = pd.DataFrame(transformed_data)
-        df['Time'] = pd.to_datetime(df['Start Time'], unit='s')
         
-        cols = st.columns([1,1,1,1,1,1,1,1,1])
-        for col, field_name in zip(cols, ([""] + fields)):
-            col.write(field_name)
+        transformed_data = [dict(zip(fields, row)) for row in data]
+        df = pd.DataFrame(data)
+        df['Time'] = pd.to_datetime(df['Start Time'], unit='s')
+
+        #cols = st.columns([1,1,1,1,1,1,1,1,1])
+        col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
+        # for col, field_name in zip(cols, ([""] + fields)):
+        #     col.write(field_name)
+        col1.write("") 
+        col2.write("Session ID") 
+        col3.write("Agents Name") 
+        col4.write("Creation Status") 
+        col5.write("Input Tokens") 
+        col6.write("Output Tokens") 
+        col7.write("Start Time") 
 
         for x, email in enumerate(df):
-            col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
+            
             col1.write(x)  # index
             col2.write(df['Session ID'][x])  # email
             col3.write(df['Agents Name'][x])  # unique ID
@@ -101,7 +109,7 @@ if defai_api_key != "":
             button_phold = col8.empty()  # create a placeholder
             do_action = button_phold.button("Delete", key=x)
             button_down = col9.empty()  # create a placeholder
-            down = button_down.download_button("Download Agents")
+            down = button_down.download_button("Download Agents", key=x)
             if do_action:
                  pass # do some action with row's data
                  button_phold.empty()  #  remove button
