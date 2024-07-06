@@ -30,7 +30,7 @@ with st.sidebar:
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header("Saved Agents")
-st.subheader('Enter a SessionId to delete generated Agents')
+st.subheader('Enter a API Key to view created Agents')
 
 url = st.secrets["DEFAI_URL"]
 
