@@ -114,7 +114,7 @@ st.markdown("""
 def calculate(in1,out1):
     t1 = calculate_cost_by_tokens(in1,"claude-3-5-sonnet-20240620","input")
     t2 = calculate_cost_by_tokens(out1,"claude-3-5-sonnet-20240620","output")
-    str(t1+t2)
+    return str(t1+t2)
 
 if defai_api_key != "":
     headers = {"Authorization": f"{defai_api_key}"}
