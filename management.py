@@ -120,10 +120,8 @@ if defai_api_key != "":
         st.dataframe(df, use_container_width=True)
         df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
-        #cols = st.columns([1,1,1,1,1,1,1,1,1])
         col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns([1,1,1,1,1,1,1,1,1,1])
-        # for col, field_name in zip(cols, ([""] + fields)):
-        #     col.write(field_name)
+
         col1.write("ID") 
         col2.write("Session ID") 
         col3.write("Agents Name") 
@@ -131,11 +129,10 @@ if defai_api_key != "":
         col5.write("Input Tokens") 
         col6.write("Output Tokens") 
         col7.write("Start Time") 
-        col8.write("-") 
-        col9.write("-") 
-        col10.write("-") 
+        col8.write("Delete Agents") 
+        col9.write("Download Agents") 
+        col10.write("Stop Generating Agents") 
 
-        st.info(str(len(df)))
         df = df.reset_index()  # make sure indexes pair with number of rows
         x = 1
         for t1, row in df.iterrows():
@@ -149,14 +146,19 @@ if defai_api_key != "":
                 col7.write(row['Time'])   # email status
 
                 button_phold = col8.empty()  # create a placeholder
-                do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(row['Session ID']))
+                delete1 = button_phold.button("Delete", key="Delete" + str(x)) #, on_click=delete(row['Session ID']))
                 button_down = col9.empty()  # create a placeholder
-                down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(row['Session ID']))
+                download1 = button_down.button("Download", key="Download" + str(x)) #, on_click=download(row['Session ID']))
                 button_stop = col10.empty()  # create a placeholder
-                down = button_stop.button("Stop Generate", key="Generate" + str(x), on_click=stop(row['Session ID']))
-                if do_action:
+                stop1 = button_stop.button("Stop", key="Generate" + str(x)) #, on_click=stop(row['Session ID']))
+                if delete1:
                     col4.write("Deleted")
+                    delete(row['Session ID'])
                     button_phold.empty()  #  remove button
+                if download1:
+                    download(row['Session ID'])
+                if stop1:
+                    stop(row['Session ID'])
                 x += 1
             except:
                 ()
