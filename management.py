@@ -136,21 +136,23 @@ if defai_api_key != "":
         col10.write("-") 
 
         for x, email in enumerate(df):
-            
-            col1.write(x)  # index
-            col2.write(df['Session ID'][x])  # email
-            col3.write(df['Agents Name'][x])  # unique ID
-            col4.write(df['Generation Status'][x])   # email status
-            col5.write(df['Input Tokens'][x])  # email
-            col6.write(df['Output Tokens'][x])  # unique ID
-            col7.write(df['Time'][x])   # email status
+            try:
+                col1.write(x)  # index
+                col2.write(df['Session ID'][x])  # email
+                col3.write(df['Agents Name'][x])  # unique ID
+                col4.write(df['Generation Status'][x])   # email status
+                col5.write(df['Input Tokens'][x])  # email
+                col6.write(df['Output Tokens'][x])  # unique ID
+                col7.write(df['Time'][x])   # email status
 
-            button_phold = col8.empty()  # create a placeholder
-            do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(df['Session ID'][x]))
-            button_down = col9.empty()  # create a placeholder
-            down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(df['Session ID'][x]))
-            button_stop = col10.empty()  # create a placeholder
-            down = button_stop.button("Stop Generate", key="Generate" + str(x), on_click=stop(df['Session ID'][x]))
-            if do_action:
-                col4.write("Deleted")
-                button_phold.empty()  #  remove button
+                button_phold = col8.empty()  # create a placeholder
+                do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(df['Session ID'][x]))
+                button_down = col9.empty()  # create a placeholder
+                down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(df['Session ID'][x]))
+                button_stop = col10.empty()  # create a placeholder
+                down = button_stop.button("Stop Generate", key="Generate" + str(x), on_click=stop(df['Session ID'][x]))
+                if do_action:
+                    col4.write("Deleted")
+                    button_phold.empty()  #  remove button
+            except:
+                ()
