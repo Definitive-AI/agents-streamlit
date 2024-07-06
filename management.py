@@ -127,7 +127,7 @@ if defai_api_key != "":
         col1.write("ID") 
         col2.write("Session ID") 
         col3.write("Agents Name") 
-        col4.write("Creation Status") 
+        col4.write("Generation Status") 
         col5.write("Input Tokens") 
         col6.write("Output Tokens") 
         col7.write("Start Time") 
@@ -140,7 +140,7 @@ if defai_api_key != "":
             col1.write(x)  # index
             col2.write(df['Session ID'][x])  # email
             col3.write(df['Agents Name'][x])  # unique ID
-            col4.write(df['Creation Status'][x])   # email status
+            col4.write(df['Generation Status'][x])   # email status
             col5.write(df['Input Tokens'][x])  # email
             col6.write(df['Output Tokens'][x])  # unique ID
             col7.write(df['Time'][x])   # email status
