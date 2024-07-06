@@ -60,6 +60,18 @@ def download():
         st.error(f"An error occurred: {str(e)}")
 
 
+st.markdown("""
+            <style>
+                div[data-testid="column"] {
+                    width: fit-content !important;
+                    flex: unset;
+                }
+                div[data-testid="column"] * {
+                    width: fit-content !important;
+                }
+            </style>
+            """, unsafe_allow_html=True)
+
 if defai_api_key != "":
     headers = {"Authorization": f"{defai_api_key}"}
     download_url = f"/api/sessions"
@@ -88,7 +100,8 @@ if defai_api_key != "":
 
             button_phold = col8.empty()  # create a placeholder
             do_action = button_phold.button("Delete", key=x)
-            col9.download_button("Download Agents")
+            button_down = col9.empty()  # create a placeholder
+            down = button_down.download_button("Download Agents")
             if do_action:
                  pass # do some action with row's data
                  button_phold.empty()  #  remove button
