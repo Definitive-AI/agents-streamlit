@@ -1,4 +1,4 @@
 st_pages==0.4.5
 requests==2.31.0
 streamlit==1.35.0
-tokencost
+tokencost==0.1.11
