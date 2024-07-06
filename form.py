@@ -74,7 +74,7 @@ with st.sidebar:
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 
-
+placeholder = st.empty()
 process_description = st.text_area("Briefly describe the process")
 process_trigger = st.text_area("Identify what starts or triggers this process")
 process_goal = st.text_area("Identify the process's end result or goal")
@@ -87,7 +87,7 @@ process_improvements = st.text_area("Discuss ideas on how this process could be 
 additional_aspects = st.text_area("Cover any important aspects of the process not yet mentioned")
 
 # Button to combine the answers
-if st.button("Combine Answers"):
+if st.button("Generate Agents for Process") and defai_api_key != "" and anth_api_key != "":
     combined_answer = f"Process Description:\n{process_description}\n\n" \
                       f"Process Trigger:\n{process_trigger}\n\n" \
                       f"Process Goal:\n{process_goal}\n\n" \
@@ -98,7 +98,25 @@ if st.button("Combine Answers"):
                       f"Process Challenges:\n{process_challenges}\n\n" \
                       f"Process Improvements:\n{process_improvements}\n\n" \
                       f"Additional Aspects:\n{additional_aspects}"
-    
-    st.subheader("Combined Answers")
-    st.text_area("", value=combined_answer, height=400)            
+
+
+    headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
+
+    chat_response = requests.post(url=url + "/api/upload_form", headers=headers, json={"prompt": combined_answer})
+    assistant_response = chat_response.json()["response"]
+
+    st.success(f"File uploaded successfully: " + assistant_response)
+
+    if assistant_response == "Processing" or assistant_response == "Already Processing":
+        # Check file status every 10 seconds
+        status = "processing"
+        i = 0
+        while status != "Complete" or i < 60:
+            time.sleep(60)
+            placeholder.empty()
+            status_response = requests.get(url=url + f"/api/status/{session_id}", headers=headers)
+            status = status_response.json()["status"]
+            placeholder.info(f"File status: {status}")
+            i += 1
+            
 
