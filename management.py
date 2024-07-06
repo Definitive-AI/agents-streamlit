@@ -43,7 +43,7 @@ if defai_api_key != "":
     data = download_response.json()
     st.info(str(data))
     if "status" not in data:
-        df = pd.read_json(data)
+        df = pd.DataFrame(data)
         st.dataframe(df, use_container_width=True)
 
     session_id = st.text_input("Enter Session ID to Delete Agents")
