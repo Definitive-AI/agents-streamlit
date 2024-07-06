@@ -41,6 +41,7 @@ if defai_api_key != "":
     download_url = f"/api/sessions"
     download_response = requests.get(url + download_url, headers=headers)
     data = download_response.json()
+    st.info(str(data))
     if "status" not in data:
         df = pd.read_json(data)
         st.dataframe(df, use_container_width=True)
