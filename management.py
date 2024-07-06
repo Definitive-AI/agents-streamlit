@@ -79,7 +79,7 @@ if defai_api_key != "":
     data = download_response.json()
     if "status" not in data:
         fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
-        
+        st.info(str(data))
         transformed_data = [dict(zip(fields, row)) for row in data]
         df = pd.DataFrame(data)
         df['Start Time'] = pd.to_datetime(df['Start Time'], unit='s')
