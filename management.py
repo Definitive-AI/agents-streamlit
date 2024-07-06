@@ -6,6 +6,8 @@ from io import BytesIO
 import pandas as pd
 from st_pages import add_indentation
 
+st.set_page_config(layout="wide")
+
 st.html("""
 <style>
 [data-testid=stSidebar] {
@@ -23,7 +25,7 @@ st.html("""
 </style>
 """)
 
-st.set_page_config(layout="wide")
+
 
 add_indentation()
 
