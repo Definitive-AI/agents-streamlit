@@ -135,6 +135,7 @@ if defai_api_key != "":
         col9.write("-") 
         col10.write("-") 
 
+        st.info(str(len(df)))
         for x, email in enumerate(df):
             try:
                 col1.write(x)  # index
