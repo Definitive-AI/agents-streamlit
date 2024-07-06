@@ -158,11 +158,11 @@ if defai_api_key != "":
                 col8.write(str(row['Time'])) 
                 
                 button_phold = col9.empty()  # create a placeholder
-                delete1 = button_phold.button("Delete", key="Delete" + str(x)) #, on_click=delete(row['Session ID']))
+                delete1 = button_phold.button("Delete", key="Delete" + str(x),use_container_width=True) #, on_click=delete(row['Session ID']))
                 button_down = col10.empty()  # create a placeholder
-                download1 = button_down.button("Download", key="Download" + str(x)) #, on_click=download(row['Session ID']))
+                download1 = button_down.button("Download", key="Download" + str(x),use_container_width=True) #, on_click=download(row['Session ID']))
                 button_stop = col11.empty()  # create a placeholder
-                stop1 = button_stop.button("Stop", key="Generate" + str(x)) #, on_click=stop(row['Session ID']))
+                stop1 = button_stop.button("Stop", key="Generate" + str(x),use_container_width=True) #, on_click=stop(row['Session ID']))
                 if delete1:
                     col4.write("Deleted")
                     delete(row['Session ID'])
