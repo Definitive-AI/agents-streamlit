@@ -12,7 +12,6 @@ show_pages(
         Page("video.py", "Video Interview", "🛠️", in_section=True),
         Page("process.py", "Process Documentation", "🛠️", in_section=True),
         Section("Storage", "💾"),
-        Page("file.py", "Download", "🛠️", in_section=True),
         Page("management.py", "Management", "🛠️", in_section=True),
         Page("form.py", "Signup",  icon="📩", in_section=False ),
         Page("blog.py", "Blog",  icon="📩", in_section=False ),

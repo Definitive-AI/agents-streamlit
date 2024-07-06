@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import time
 import os
+from io import BytesIO
 import pandas as pd
 from st_pages import add_indentation
 
@@ -34,6 +35,29 @@ st.subheader('Enter a API Key to view created Agents')
 
 url = st.secrets["DEFAI_URL"]
 
+def download():
+    headers = {"Authorization": f"{defai_api_key}"}
+    try:
+        download_url = f"/api/download/{session_id}"
+        download_response = requests.get(url + download_url, headers=headers)
+        download_response.raise_for_status()
+
+        if download_response.headers['Content-Type'] == 'application/zip':
+            st.download_button(
+                label="Download Processed File",
+                data=BytesIO(download_response.content),
+                file_name=session_id+"_agents.zip",
+                mime="application/octet-stream"            )
+        elif download_response.headers['Content-Type'] == 'application/json':
+            st.error(download_response.json())                         
+        else:
+            st.error(f"Unexpected MIME type: {download_response.headers['Content-Type']}")
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error retrieving file: {str(e)}")
+    except KeyError:
+        st.error("Invalid response format. 'file_id' not found in the response.")
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
 
 
 if defai_api_key != "":
@@ -42,14 +66,35 @@ if defai_api_key != "":
     download_response = requests.get(url + download_url, headers=headers)
     data = download_response.json()
     if "status" not in data:
-        columns = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
-        transformed_data = [dict(zip(columns, row)) for row in data]
-        df = pd.DataFrame(transformed_data)
-        
-        # Convert the "Time" column from integer to datetime
-        df['Time'] = pd.to_datetime(df['Start Time'], unit='s')
-        st.dataframe(df, use_container_width=True)
+        fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
 
+        transformed_data = [dict(zip(fields, row)) for row in data]
+        df = pd.DataFrame(transformed_data)
+        df['Time'] = pd.to_datetime(df['Start Time'], unit='s')
+        
+        cols = st.columns([1,1,1,1,1,1,1,1])
+        for col, field_name in zip(cols, fields):
+            col.write(field_name)
+
+        for x, email in enumerate(df):
+            col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
+            col1.write(x)  # index
+            col2.write(df['Session ID'][x])  # email
+            col3.write(df['Agents Name'][x])  # unique ID
+            col4.write(df['Creation Status'][x])   # email status
+            col5.write(df['Input Tokens'][x])  # email
+            col6.write(df['Output Tokens'][x])  # unique ID
+            col7.write(df['Start Time'][x])   # email status
+            disable_status = df['disabled'][x]  # flexible type of button
+            button_type = "Unblock" if disable_status else "Block"
+            button_phold = col8.empty()  # create a placeholder
+            do_action = button_phold.button(button_type, key=x)
+            col9.download_button("Download Agents")
+            if do_action:
+                 pass # do some action with row's data
+                 button_phold.empty()  #  remove button
+        #st.dataframe(df, use_container_width=True)
+           
     session_id = st.text_input("Enter Session ID to Delete Agents")
 
     if session_id:
