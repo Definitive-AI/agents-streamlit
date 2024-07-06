@@ -5,6 +5,8 @@ import os
 from io import BytesIO
 import pandas as pd
 from st_pages import add_indentation
+import tokencost
+from tokencost import calculate_cost_by_tokens
 
 st.set_page_config(layout="wide")
 
@@ -109,6 +111,11 @@ st.markdown("""
             </style>
             """, unsafe_allow_html=True)
 
+def calculate(in1,out1):
+    t1 = calculate_cost_by_tokens(in1,"claude-3-5-sonnet-20240620","input")
+    t2 = calculate_cost_by_tokens(out1,"claude-3-5-sonnet-20240620","output")
+    str(t1+t2)
+
 if defai_api_key != "":
     headers = {"Authorization": f"{defai_api_key}"}
     download_url = f"/api/sessions"
@@ -122,7 +129,7 @@ if defai_api_key != "":
         #st.dataframe(df, use_container_width=True)
         df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
-        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns([1,1,1,1,1,1,1,1,1,1])
+        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1,1,1,1,1,1,1,1,1,1,11])
 
         col1.write("ID") 
         col2.write("Session ID") 
@@ -134,11 +141,13 @@ if defai_api_key != "":
         col8.write("Delete Agents") 
         col9.write("Download Agents") 
         col10.write("Stop Generating Agents") 
+        col11.write("Cost") 
 
         df = df.reset_index()  # make sure indexes pair with number of rows
         x = 1
         for t1, row in df.iterrows():
             try:
+                cost = calculate(row['Input Tokens'],row['Output Tokens'])
                 col1.write(x)  # index
                 col2.write(row['Session ID'])  # email
                 col3.write(row['Agents Name'])  # unique ID
@@ -146,6 +155,7 @@ if defai_api_key != "":
                 col5.write(row['Input Tokens'])  # email
                 col6.write(row['Output Tokens'])  # unique ID
                 col7.write(row['Time'])   # email status
+                col11.write("$" + cost)   # email status
 
                 button_phold = col8.empty()  # create a placeholder
                 delete1 = button_phold.button("Delete", key="Delete" + str(x)) #, on_click=delete(row['Session ID']))
