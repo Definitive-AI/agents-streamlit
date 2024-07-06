@@ -25,8 +25,6 @@ st.html("""
 </style>
 """)
 
-
-
 add_indentation()
 
 with st.sidebar:
@@ -111,9 +109,9 @@ if defai_api_key != "":
             col7.write(df['Time'][x])   # email status
 
             button_phold = col8.empty()  # create a placeholder
-            do_action = button_phold.button("Delete", key=x)
+            do_action = button_phold.button("Delete", key="Delete" + str(x))
             button_down = col9.empty()  # create a placeholder
-            down = button_down.button("Download Agents", key=x)
+            down = button_down.button("Download Agents", key="Download" + str(x))
             # if do_action:
             #     pass # do some action with row's data
             #     button_phold.empty()  #  remove button
