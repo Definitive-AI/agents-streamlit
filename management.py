@@ -82,7 +82,7 @@ if defai_api_key != "":
         
         transformed_data = [dict(zip(fields, row)) for row in data]
         df = pd.DataFrame(data,columns=fields)
-        st.dataframe(df, use_container_width=True)
+        #st.dataframe(df, use_container_width=True)
         df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
         #cols = st.columns([1,1,1,1,1,1,1,1,1])
@@ -105,7 +105,7 @@ if defai_api_key != "":
             col4.write(df['Creation Status'][x])   # email status
             col5.write(df['Input Tokens'][x])  # email
             col6.write(df['Output Tokens'][x])  # unique ID
-            col7.write(df['Start Time'][x])   # email status
+            col7.write(df['Time'][x])   # email status
 
             button_phold = col8.empty()  # create a placeholder
             do_action = button_phold.button("Delete", key=x)
