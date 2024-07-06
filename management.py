@@ -32,11 +32,28 @@ with st.sidebar:
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)
 st.header("Saved Agents")
-st.subheader('Enter a API Key to view created Agents')
+st.subheader('Enter an API Key to view generated Agents')
 
 url = st.secrets["DEFAI_URL"]
 
-def download():
+def delete(session_id):
+    #headers = {"Authorization": f"Bearer {defai_api_key}"}
+    headers = {"Authorization": f"{defai_api_key}"}
+    try:
+        download_url = f"/api/delete/{session_id}"
+        download_response = requests.get(url + download_url, headers=headers)
+        download_response.raise_for_status()
+        response = download_response.json()["response"]
+        if response == "Complete":
+            st.info("Agents Deleted")
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error retrieving file: {str(e)}")
+    except KeyError:
+        st.error("Invalid response format. 'file_id' not found in the response.")
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
+
+def download(session_id):
     headers = {"Authorization": f"{defai_api_key}"}
     try:
         download_url = f"/api/download/{session_id}"
@@ -79,7 +96,7 @@ if defai_api_key != "":
     download_response = requests.get(url + download_url, headers=headers)
     data = download_response.json()
     if "status" not in data:
-        fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Time"]
+        fields = ["Session ID", "Agents Name", "Generation Status", "Input Tokens", "Output Tokens", "Time"]
         
         transformed_data = [dict(zip(fields, row)) for row in data]
         df = pd.DataFrame(data,columns=fields)
@@ -111,31 +128,9 @@ if defai_api_key != "":
             col7.write(df['Time'][x])   # email status
 
             button_phold = col8.empty()  # create a placeholder
-            do_action = button_phold.button("Delete", key="Delete" + str(x))
+            do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(df['Session ID'][x]))
             button_down = col9.empty()  # create a placeholder
-            down = button_down.button("Download Agents", key="Download" + str(x))
-            # if do_action:
-            #     pass # do some action with row's data
-            #     button_phold.empty()  #  remove button
-    #
-           
-    # session_id = st.text_input("Enter Session ID to Delete Agents")
-
-    # if session_id:
-    #     #headers = {"Authorization": f"Bearer {defai_api_key}"}
-    #     headers = {"Authorization": f"{defai_api_key}"}
-    #     try:
-    #         download_url = f"/api/delete/{session_id}"
-    #         download_response = requests.get(url + download_url, headers=headers)
-    #         download_response.raise_for_status()
-    #         response = download_response.json()["response"]
-    #         if response == "Complete":
-    #             st.info("Agents Deleted")
-    #     except requests.exceptions.RequestException as e:
-    #         st.error(f"Error retrieving file: {str(e)}")
-    #     except KeyError:
-    #         st.error("Invalid response format. 'file_id' not found in the response.")
-    #     except Exception as e:
-    #         st.error(f"An error occurred: {str(e)}")
-    # else:
-    #     st.info("Please enter a Session ID to delete the agents.")
+            down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(df['Session ID'][x]))
+            if do_action:
+                col4.write("Deleted")
+                button_phold.empty()  #  remove button
