@@ -66,13 +66,13 @@ if defai_api_key != "":
     download_response = requests.get(url + download_url, headers=headers)
     data = download_response.json()
     if "status" not in data:
-        fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
+        fields = ["", "Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
 
         transformed_data = [dict(zip(fields, row)) for row in data]
         df = pd.DataFrame(transformed_data)
         df['Time'] = pd.to_datetime(df['Start Time'], unit='s')
         
-        cols = st.columns([1,1,1,1,1,1,1,1])
+        cols = st.columns([1,1,1,1,1,1,1,1,1])
         for col, field_name in zip(cols, fields):
             col.write(field_name)
 
@@ -85,10 +85,9 @@ if defai_api_key != "":
             col5.write(df['Input Tokens'][x])  # email
             col6.write(df['Output Tokens'][x])  # unique ID
             col7.write(df['Start Time'][x])   # email status
-            disable_status = df['disabled'][x]  # flexible type of button
-            button_type = "Unblock" if disable_status else "Block"
+            
             button_phold = col8.empty()  # create a placeholder
-            do_action = button_phold.button(button_type, key=x)
+            do_action = button_phold.button("Delete", key=x)
             col9.download_button("Download Agents")
             if do_action:
                  pass # do some action with row's data
