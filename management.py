@@ -78,11 +78,12 @@ if defai_api_key != "":
     download_response = requests.get(url + download_url, headers=headers)
     data = download_response.json()
     if "status" not in data:
-        fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Start Time"]
-        st.info(str(data))
+        fields = ["Session ID", "Agents Name", "Creation Status", "Input Tokens", "Output Tokens", "Time"]
+        
         transformed_data = [dict(zip(fields, row)) for row in data]
         df = pd.DataFrame(data)
-        df['Start Time'] = pd.to_datetime(df['Start Time'], unit='s')
+        st.dataframe(df, use_container_width=True)
+        df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
         #cols = st.columns([1,1,1,1,1,1,1,1,1])
         col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1,1,1,1,1,1,1,1,1])
@@ -113,7 +114,7 @@ if defai_api_key != "":
             if do_action:
                  pass # do some action with row's data
                  button_phold.empty()  #  remove button
-        #st.dataframe(df, use_container_width=True)
+        #
            
     session_id = st.text_input("Enter Session ID to Delete Agents")
 
