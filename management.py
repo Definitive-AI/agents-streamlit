@@ -36,6 +36,8 @@ st.subheader('Enter an API Key to view generated Agents')
 
 url = st.secrets["DEFAI_URL"]
 
+st.markdown("---")
+
 def delete(session_id):
     #headers = {"Authorization": f"Bearer {defai_api_key}"}
     headers = {"Authorization": f"{defai_api_key}"}
@@ -162,6 +164,8 @@ if defai_api_key != "":
                 x += 1
             except:
                 ()
+
+st.markdown("---")
 
 reload = st.button("Refresh")
 if reload:
