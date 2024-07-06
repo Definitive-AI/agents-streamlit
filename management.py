@@ -141,19 +141,19 @@ if defai_api_key != "":
         for t1, row in df.iterrows():
             try:
                 col1.write(x)  # index
-                col2.write(row['Session ID'][x])  # email
-                col3.write(df['Agents Name'][x])  # unique ID
-                col4.write(df['Generation Status'][x])   # email status
-                col5.write(df['Input Tokens'][x])  # email
-                col6.write(df['Output Tokens'][x])  # unique ID
-                col7.write(df['Time'][x])   # email status
+                col2.write(row['Session ID'])  # email
+                col3.write(row['Agents Name'])  # unique ID
+                col4.write(row['Generation Status'])   # email status
+                col5.write(row['Input Tokens'])  # email
+                col6.write(row['Output Tokens'])  # unique ID
+                col7.write(row['Time'])   # email status
 
                 button_phold = col8.empty()  # create a placeholder
-                do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(df['Session ID'][x]))
+                do_action = button_phold.button("Delete", key="Delete" + str(x), on_click=delete(row['Session ID']))
                 button_down = col9.empty()  # create a placeholder
-                down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(df['Session ID'][x]))
+                down = button_down.button("Download Agents", key="Download" + str(x), on_click=download(row['Session ID']))
                 button_stop = col10.empty()  # create a placeholder
-                down = button_stop.button("Stop Generate", key="Generate" + str(x), on_click=stop(df['Session ID'][x]))
+                down = button_stop.button("Stop Generate", key="Generate" + str(x), on_click=stop(row['Session ID']))
                 if do_action:
                     col4.write("Deleted")
                     button_phold.empty()  #  remove button
