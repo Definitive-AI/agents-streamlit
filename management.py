@@ -99,17 +99,17 @@ def download(session_id):
         st.error(f"An error occurred: {str(e)}")
 
 
-# st.markdown("""
-#             <style>
-#                 div[data-testid="column"] {
-#                     width: fit-content !important;
-#                     flex: unset;
-#                 }
-#                 div[data-testid="column"] * {
-#                     width: fit-content !important;
-#                 }
-#             </style>
-#             """, unsafe_allow_html=True)
+st.markdown("""
+            <style>
+                div[data-testid="column"] {
+                    width: fit-content !important;
+                    flex: unset;
+                }
+                div[data-testid="column"] * {
+                    width: fit-content !important;
+                }
+            </style>
+            """, unsafe_allow_html=True)
 
 def calculate(in1,out1):
     t1 = calculate_cost_by_tokens(in1,"claude-3-5-sonnet-20240620","input")
