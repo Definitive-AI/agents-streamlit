@@ -151,7 +151,10 @@ if defai_api_key != "":
                 cost = calculate(row['Input Tokens'],row['Output Tokens'])
                 col1.write(str(x))  # index
                 col2.write(row['Session ID'])  # email
-                col3.write(row['Agents Name'])  # unique ID
+                if row['Agents Name'] != "":
+                    col3.write(row['Agents Name'])  # unique ID
+                else:
+                    col3.write("-")
                 col4.write(row['Generation Status']) 
                 col5.write(str(row['Input Tokens'])) 
                 col6.write(str(row['Output Tokens']))
