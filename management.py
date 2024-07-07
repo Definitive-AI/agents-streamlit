@@ -135,13 +135,13 @@ if defai_api_key != "":
         col1.write("ID") 
         col2.write("Session ID") 
         col3.write("Agents Name") 
-        col4.write("Generation Status") 
+        col4.write("Build Status") 
         col5.write("Input Tokens") 
         col6.write("Output Tokens") 
         col7.write("Cost") 
         col8.write("Start Time") 
         col9.write("Download Agents") 
-        col10.write("Stop Generating Agents") 
+        col10.write("Stop Generating") 
         col11.write("Delete Agents") 
 
         df = df.reset_index()  # make sure indexes pair with number of rows
