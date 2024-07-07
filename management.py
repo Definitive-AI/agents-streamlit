@@ -30,7 +30,11 @@ st.html("""
 add_indentation()
 
 with st.sidebar:
-    defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
+    if 'defai_api_key' not in st.session_state:
+        defai_api_key = st.text_input("Definitive API Key", key="defai_api_key", type="password")
+        st.session_state['defai_api_key'] = defai_api_key
+    else:
+        defai_api_key = st.text_input("Definitive API Key",  value=st.session_state['defai_api_key'], key="defai_api_key", type="password")
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Management</h1>", unsafe_allow_html=True)
 st.header("")
