@@ -99,17 +99,17 @@ def download(session_id):
         st.error(f"An error occurred: {str(e)}")
 
 
-st.markdown("""
-            <style>
-                div[data-testid="column"] {
-                    width: fit-content !important;
-                    flex: unset;
-                }
-                div[data-testid="column"] * {
-                    width: fit-content !important;
-                }
-            </style>
-            """, unsafe_allow_html=True)
+# st.markdown("""
+#             <style>
+#                 div[data-testid="column"] {
+#                     width: fit-content !important;
+#                     flex: unset;
+#                 }
+#                 div[data-testid="column"] * {
+#                     width: fit-content !important;
+#                 }
+#             </style>
+#             """, unsafe_allow_html=True)
 
 def calculate(in1,out1):
     t1 = calculate_cost_by_tokens(in1,"claude-3-5-sonnet-20240620","input")
@@ -130,7 +130,7 @@ if defai_api_key != "":
         #st.dataframe(df, use_container_width=True)
         df['Time'] = pd.to_datetime(df['Time'], unit='s')
 
-        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1,1,1,1,1,1,1,1,1,1,11])
+        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns([1,1,2,2,2,2,2,2,2,1,1,1])
 
         col1.write("ID") 
         col2.write("Session ID") 
@@ -143,7 +143,7 @@ if defai_api_key != "":
         col9.write("Download Agents") 
         col10.write("Stop Generating Agents") 
         col11.write("Delete Agents") 
-    
+
         df = df.reset_index()  # make sure indexes pair with number of rows
         x = 1
         for t1, row in df.iterrows():
