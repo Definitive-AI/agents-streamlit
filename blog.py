@@ -3,6 +3,8 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
+st.set_page_config(layout="centered")
+
 st.html("""
 <style>
 [data-testid=stSidebar] {

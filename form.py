@@ -5,6 +5,8 @@ import os
 from st_pages import add_indentation
 from io import BytesIO
 
+st.set_page_config(layout="centered")
+
 st.html("""
 <style>
 [data-testid=stSidebar] {

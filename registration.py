@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 from st_pages import add_indentation
 
+st.set_page_config(layout="centered")
+
 st.html("""
 <style>
 [data-testid=stSidebar] {

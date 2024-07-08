@@ -1,6 +1,8 @@
 import streamlit as st
 from st_pages import Page, show_pages, add_page_title, Section, add_indentation
 
+st.set_page_config(layout="centered")
+
 #add_page_title() 
 add_indentation()
 

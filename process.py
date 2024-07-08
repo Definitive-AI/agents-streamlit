@@ -5,6 +5,8 @@ from io import BytesIO
 import os
 from st_pages import add_indentation
 
+st.set_page_config(layout="centered")
+
 add_indentation()
 
 st.html("""

@@ -12,6 +12,8 @@ from threading import Thread
 from streamlit.runtime import get_instance
 from streamlit.runtime.scriptrunner import get_script_run_ctx
 
+st.set_page_config(layout="centered")
+
 st.html("""
 <style>
 [data-testid=stSidebar] {
