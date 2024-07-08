@@ -144,7 +144,7 @@ Sign up through the above link to receive a Definitive AI API Key.
      
 ### ❔ Asking for help in Discord
 
-The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/5sH2RPXP) channel.     
+The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/4zsxZKkv) channel.     
 
 ### Privacy and Data Policy
 
