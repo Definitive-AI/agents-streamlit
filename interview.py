@@ -89,7 +89,7 @@ st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1
 st.header('Chat Interview')
 st.subheader('Chat with Eva to generate Agents')
 
-headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_api_key": anth_api_key}
+headers = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}
 
 
 def ping():
