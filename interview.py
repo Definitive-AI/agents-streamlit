@@ -97,7 +97,7 @@ def ping():
     status = ""
     while check:
         time.sleep(10)
-        chat_response = requests.post(url=url + "/api/ping", headers=headers, json={"session_id": session_id, })
+        chat_response = requests.post(url=url + "/api/ping", headers=headers, json={"sessionid": session_id, })
         status = chat_response.json()["status"]
         
         if status != "":
