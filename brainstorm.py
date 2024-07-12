@@ -159,9 +159,9 @@ if prompt := st.chat_input("Enter your message"):
 
     asyncio.run(main())
 
-progress = st.button(label=":blue[Submit Process for Generation]",type="primary")
-if progress and defai_api_key != "":
-    headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
-    brainstorm_url = f"/api/pdd_brainstorm"
-    brainstorm_response = requests.post(brainstorm_url, headers=headers1)      
-    st.info(brainstorm_response.content)  
+# progress = st.button(label=":blue[Submit Process for Generation]",type="primary")
+# if progress and defai_api_key != "":
+#     headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
+#     brainstorm_url = f"/api/pdd_brainstorm"
+#     brainstorm_response = requests.post(brainstorm_url, headers=headers1)      
+#     st.info(brainstorm_response.content)  
