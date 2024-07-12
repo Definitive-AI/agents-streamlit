@@ -115,46 +115,53 @@ headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_
 #     )
 
 
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.markdown(message["content"])
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-# if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
-#     chat_response = requests.post(url=url + "/api/start_chat", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
-#     assistant_response = chat_response.json()["response"]     
-#     st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
+if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
+    chat_response = requests.post(url=url + "/api/start_brainstorming", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
+    assistant_response = chat_response.json()["response"]     
+    st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
     
-#     with st.chat_message("assistant"):
-#         st.markdown(assistant_response)
+    with st.chat_message("assistant"):
+        st.markdown(assistant_response)
 
-#     # t = Thread(target=ping, args=())
-#     # t.start()
+    # t = Thread(target=ping, args=())
+    # t.start()
 
-# async def get_response(prompt,uploaded_file):  
-#     headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
-#     if uploaded_file is None:
-#         chat_response = requests.post(url=url + "/api/chat", headers=headers, json={"prompt": prompt,})
-#         assistant_response = chat_response.json()["response"]
-#     else:
-#         files = {"file": uploaded_file}
-#         st.info("Screenshot upload")
-#         chat_response = requests.post(url=url + "/api/screenshot", headers=headers1, data={"prompt": prompt}, files=files)
-#         assistant_response = chat_response.json()["response"]
+async def get_response(prompt,uploaded_file):  
+    headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
+    if uploaded_file is None:
+        chat_response = requests.post(url=url + "/api/brainstorming", headers=headers, json={"prompt": prompt,})
+        assistant_response = chat_response.json()["response"]
+    else:
+        files = {"file": uploaded_file}
+        st.info("Screenshot upload")
+        chat_response = requests.post(url=url + "/api/screenshot", headers=headers1, data={"prompt": prompt}, files=files)
+        assistant_response = chat_response.json()["response"]
 
-#     st.session_state.messages.append({"role": "assistant", "content": assistant_response})
-#     with st.chat_message("assistant"):
-#         st.markdown(assistant_response)   
+    st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+    with st.chat_message("assistant"):
+        st.markdown(assistant_response)   
 
-#     st.session_state.uploader_key += 1
-#     st.experimental_rerun()         
+    st.session_state.uploader_key += 1
+    st.experimental_rerun()         
 
-# if prompt := st.chat_input("Enter your message"):
-#     st.session_state.messages.append({"role": "user", "content": prompt})
-#     with st.chat_message("user"):
-#         st.markdown(prompt)
+if prompt := st.chat_input("Enter your message"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
     
-#     # Make API call to get assistant response
-#     async def main():
-#         await get_response(prompt,uploaded_file)
+    # Make API call to get assistant response
+    async def main():
+        await get_response(prompt,uploaded_file)
 
-#     asyncio.run(main())
+    asyncio.run(main())
+
+progress = st.button(label=":blue[Submit Process for Generation]",type="primary")
+if progress and defai_api_key != "":
+    headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
+    brainstorm_url = f"/api/pdd_brainstorm"
+    brainstorm_response = requests.post(brainstorm_url, headers=headers1)      
+    st.info(brainstorm_response.content)  
