@@ -89,9 +89,6 @@ st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1
 st.header('Brainstorming Interview')
 st.subheader('Brainstorming with Eva to generate Agents')
 
-headers = {"Authorization": f"{defai_api_key}", "session_id": session_id, "anth_api_key": anth_api_key}
-
-
 # def ping():
 #     check = True
 #     status = ""
@@ -120,7 +117,8 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key != "" :
-    chat_response = requests.post(url=url + "/api/start_brainstorming", headers=headers, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
+    headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}  
+    chat_response = requests.post(url=url + "/api/start_brainstorming", headers=headers1, json={"prompt": "start the conversation with the user", "session_id": session_id, "anth_api_key": anth_api_key})
     assistant_response = chat_response.json()["response"]     
     st.session_state.messages.append({"role": "assistant", "content": assistant_response})   
     
