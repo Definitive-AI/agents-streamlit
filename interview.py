@@ -7,12 +7,12 @@ import requests
 import asyncio
 from typing import Dict
 import time
-from st_pages import add_indentation
 from threading import Thread
 from streamlit.runtime import get_instance
 from streamlit.runtime.scriptrunner import get_script_run_ctx
+from zip_downloader import download_and_unzip
 
-st.set_page_config(layout="centered")
+# st.set_page_config(layout="centered")
 
 st.html("""
 <style>
@@ -30,8 +30,6 @@ st.html("""
 }
 </style>
 """)
-
-add_indentation()
 
 def _get_session():
 
@@ -104,6 +102,9 @@ def ping():
             st.info("Progress: " + status, icon="ℹ️")
             if status == "Complete":
                 check = False
+                download_url = url + f"/api/download/{session_id}"
+                agents_path = download_and_unzip(download_url)
+                st.info("Agents downloaded to: " + agents_path, icon="ℹ️")
         
     st.success("File processing completed.")
     download_url = url + f"/api/download/{session_id}"

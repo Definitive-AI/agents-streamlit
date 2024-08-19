@@ -4,9 +4,9 @@ import time
 import os
 from io import BytesIO
 import pandas as pd
-from st_pages import add_indentation
 import tokencost
 from tokencost import calculate_cost_by_tokens
+import zipfile
 
 st.set_page_config(layout="wide")
 
@@ -26,8 +26,6 @@ st.html("""
 }
 </style>
 """)
-
-add_indentation()
 
 with st.sidebar:
     if 'defai_api_key' not in st.session_state:
@@ -79,6 +77,10 @@ def stop(session_id):
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")        
 
+def write_zip(file, content):
+    with open(file, 'wb') as file:
+        return file.write(content)
+
 def download(session_id):
     headers = {"Authorization": f"{defai_api_key}"}
     try:
@@ -86,12 +88,21 @@ def download(session_id):
         download_response = requests.get(url + download_url, headers=headers)
         download_response.raise_for_status()
 
-        if download_response.headers['Content-Type'] == 'application/zip':
-            st.download_button(
-                label="Download Processed File",
-                data=BytesIO(download_response.content),
-                file_name=session_id+"_agents.zip",
-                mime="application/octet-stream"            )
+        if download_response.headers['Content-Type'] == 'application/zip' or "application/x-zip-compressed":
+            file = session_id + "_agents.zip"
+            # st.download_button(
+            #     label="Download Processed File",
+            #     data=BytesIO(download_response.content),
+            #     file_name=file,
+            #     mime="application/octet-stream")    
+            res = write_zip(file,download_response.content)        
+            print("download_response: " + str(res))
+            current_directory = os.getcwd()
+            folder_name = os.path.join(os.path.dirname(current_directory), "agents")
+            os.makedirs(folder_name, exist_ok=True)
+            with zipfile.ZipFile(file, 'r') as zip_ref:
+                zip_ref.extractall(folder_name)
+
         elif download_response.headers['Content-Type'] == 'application/json':
             st.error(download_response.json())                         
         else:

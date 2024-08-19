@@ -7,10 +7,10 @@ import requests
 import asyncio
 from typing import Dict
 import time
-from st_pages import add_indentation
 from threading import Thread
 from streamlit.runtime import get_instance
 from streamlit.runtime.scriptrunner import get_script_run_ctx
+from zip_downloader import download_and_unzip
 
 st.set_page_config(layout="centered")
 
@@ -30,8 +30,6 @@ st.html("""
 }
 </style>
 """)
-
-add_indentation()
 
 def _get_session():
 
@@ -131,7 +129,7 @@ if len(st.session_state.messages) == 0 and anth_api_key != "" and defai_api_key 
 async def get_response(prompt,uploaded_file):  
     headers1 = {"Authorization": f"{defai_api_key}", "sessionid": session_id, "anthapikey": anth_api_key}   
     if uploaded_file is None:
-        chat_response = requests.post(url=url + "/api/brainstorming", headers=headers, json={"prompt": prompt,})
+        chat_response = requests.post(url=url + "/api/brainstorming", headers=headers1, json={"prompt": prompt,})
         assistant_response = chat_response.json()["response"]
     else:
         files = {"file": uploaded_file}

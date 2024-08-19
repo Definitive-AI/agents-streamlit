@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 import time
 import os
-from st_pages import add_indentation
 from io import BytesIO
 
 st.set_page_config(layout="centered")
@@ -23,9 +22,6 @@ st.html("""
 }
 </style>
 """)
-
-
-add_indentation()
 
 
 st.markdown("<h1 style='text-align: center; color: #212750;'>Agent Generator</h1>", unsafe_allow_html=True)

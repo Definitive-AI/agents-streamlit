@@ -6,7 +6,6 @@ import requests
 import asyncio
 from typing import Dict
 import time
-from st_pages import add_indentation
 from threading import Thread
 from streamlit.runtime import get_instance
 from streamlit.runtime.scriptrunner import get_script_run_ctx
@@ -29,8 +28,6 @@ st.html("""
 }
 </style>
 """)
-
-add_indentation()
 
 def _get_session():
 

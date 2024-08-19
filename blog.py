@@ -21,8 +21,11 @@ st.html("""
 
 
 # Connect to the database
-conn = sqlite3.connect('blog.db')
-c = conn.cursor()
+try:
+    conn = sqlite3.connect('blog.db')
+    c = conn.cursor()
+except:
+    conn = None
 
 # Create a table if not exists
 c.execute('CREATE TABLE IF NOT EXISTS posts (author TEXT, title TEXT, content TEXT, date DATE)')

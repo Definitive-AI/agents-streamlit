@@ -1,31 +1,40 @@
+import os
+import sys
 import streamlit as st
-from st_pages import Page, show_pages, add_page_title, Section, add_indentation
-
-st.set_page_config(layout="centered")
 
 #add_page_title() 
-add_indentation()
+# add_indentation()
 
-show_pages(
-    [
-        Page("main.py", "Definitive AI"),
-        Section("Generators", "🧙‍♂️"),
-        Page("interview.py", "Chat Interview", "🛠️", in_section=True),        
-        Page("process.py", "Process Documentation", "🛠️", in_section=True),
-        Page("form.py", "Form", "🛠️", in_section=True),
-        Page("brainstorm.py", "Brainstorm", "🛠️", in_section=True),     
-        Page("video.py", "Video Interview", "🛠️", in_section=True),
-        Section("Agents", "💾"),
-        Page("management.py", "Management", "🛠️", in_section=True),
-        Page("registration.py", "Signup",  icon="📩", in_section=False ),
-        Page("blog.py", "Blog",  icon="📩", in_section=False ),
-    ]
-)
+# show_pages(
+#     [
+#         Page("main.py", "Definitive AI"),
+#         Section("Generators", "🧙‍♂️"),
+#         Page("interview.py", "Chat Interview", "🛠️", in_section=True),        
+#         Page("process.py", "Process Documentation", "🛠️", in_section=True),
+#         Page("form.py", "Form", "🛠️", in_section=True),
+#         Page("brainstorm.py", "Brainstorm", "🛠️", in_section=True),     
+#         Page("video.py", "Video Interview", "🛠️", in_section=True),
+#         Section("Aider", "🧙‍♂️"),
+#         Page("aider_gui.py", "Aider",  icon="🛠️", in_section=True),
+#         Section("Agents", "💾"),
+#         Page("management.py", "Management", "🛠️", in_section=True),
+#         Page("registration.py", "Signup",  icon="📩", in_section=False ),
+#         Page("blog.py", "Blog",  icon="📩", in_section=False ),        
+#     ]
+# )
+
+st.set_page_config(layout="centered")
 
 st.html("""
 <style>
 [data-testid=stSidebar] {
         background-color: #212750;
+        h1 {
+            color: white;
+        }
+        header {
+            color: white;
+        }
     }
 [data-testid="stSidebarContent"] {
     color: white;
@@ -49,7 +58,7 @@ st.markdown("""<p align="center" style="font-size: 23px;" markdown="1"><b>Join o
 
 st.markdown("""
 ### 📓 User Guide
- 
+
 ## Introduction
 [Definitive AI](https://definitive-ai.com/) is a groundbreaking developer tool that leverages the power of GPT to revolutionize the creation and deployment of AI agents. By simply providing process documentation or participating in a structured interview with an AI, developers can automatically generate comprehensive code for sophisticated AI agents, complete with all necessary components and configurations.
 
@@ -67,7 +76,7 @@ With Definitive AI, developers can:
 - **Enhance Code Quality and Consistency**: Leverage best practices and optimized patterns in generated agent code.
 
 By automating the intricate details of AI agent implementation, Definitive AI empowers developers to rapidly prototype, iterate, and deploy sophisticated AI systems with minimal manual coding. This tool bridges the gap between high-level agent design and low-level implementation, enabling you to bring your AI agent concepts to life more quickly and efficiently than ever before.
-   
+
 
 ## Getting Started
 1. Sign up for a Definitive AI account at the signup page. Enter your first name, last name, email, use case, and register.
@@ -117,7 +126,7 @@ You can monitor the agent generation process in the management section.
 2. Enter your Anthropic Key and Defintive AI key to start the interview with Eva, Definitive AI's interview agent. Eva will ask a series of questions to understand your process in detail.
 3. You may choose a screenshot to upload that provides context for the interview at any time.            
 4. After the interview, Eva will generate process documentation and AI agent designs based on the information gathered. You will receive an email notification when the generation is complete, and the outputs will be available in the Storage area.
-      
+    
 ### Form
 
 1. Go to the Form generator. 
@@ -158,7 +167,7 @@ To make Discord discussions more organized:
 By leveraging Definitive AI's powerful GPT-based system, you can rapidly design and deploy optimized AI agents to automate and enhance your organization's processes. The intuitive generators streamline the development workflow, while the Storage area provides easy access to your created assets.
             
 Sign up through the above link to receive a Definitive AI API Key.            
-     
+    
 ### ❔ Asking for help in Discord
 
 The best way to get support is to use Definitive AI Discord. Join the [`#DefinitiveAI`](https://discord.gg/4zsxZKkv) channel.     
@@ -206,6 +215,7 @@ footer {visibility: hidden;}
 """
 
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
 
 
 # To make discussions in Discord more organized:
